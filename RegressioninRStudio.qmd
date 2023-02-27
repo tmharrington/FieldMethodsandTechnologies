@@ -1,0 +1,82 @@
+---
+title: "RegressioninRStudio"
+author: "Trevor Harrington"
+format: html
+editor: visual
+keep-md: TRUE
+---
+
+```{r}
+library(readr)
+Dataset_1 <- read_csv("~/R/Field_methods/Dataset 1.csv")
+View(Dataset_1)
+
+Dataset_2 <- read_csv("~/R/Field_methods/Dataset 2.csv")
+View(Dataset_2)
+
+Dataset_3 <- read_csv("~/R/Field_methods/Dataset 2.csv")
+View(Dataset_3)
+
+```
+
+## 1. Wolf Spiders vs. Prey Spiders
+
+```{r}
+
+plot(WolfSpiders~PreySpiders, data = Dataset_1)
+
+title(main = "Dataset 1: Wolf vs Prey Spiders")
+
+results = lm(WolfSpiders~PreySpiders, data = Dataset_1)
+
+abline(results)
+
+```
+
+```{r}
+results = lm(WolfSpiders~PreySpiders, data = Dataset_1)
+
+summary(results)
+```
+
+### Conclusion
+
+**For each 1 spider/m2 increase in prey spiders, we observed a 2.05 spider/m2 increase in wolf spiders (p = 3.77x10\^-6; r\^2 = 0.419).**
+
+## 2. Relationship Between Elevation and Size of Lotus Flowers
+
+```{r}
+
+plot(Size~Elevation, data = Dataset_2)
+title(main = "Elevation vs. Lotus Flower Size")
+results = lm(Size~Elevation, data = Dataset_2)
+abline(results)
+```
+
+```{r}
+results = lm(Size~Elevation, data = Dataset_2)
+summary(results)
+```
+
+### Conclusion
+
+**For each 1000 meter increase in elevation, we observed a 1.01cm decrease in lotus flower size (p = 2 x 10\^-16; r\^2 = 0.1459).**
+
+## 3. Relationship between Foraging Time and Bird of Prey Presence in Colombian Ground Squirrels
+
+```{r}
+
+plot(Time~Predators, data = Dataset_3)
+title(main = "Time Spent Foraging vs. Birds of Prey Sightings")
+results = lm(Time~Predators, data = Dataset_3)
+abline(results)
+```
+
+```{r}
+results = lm(Time~Predators, data = Dataset_3)
+summary(results)
+```
+
+### Conclusion
+
+**For each 1 birds of prey increase measured the preceding day, we observed a 2.81 minute/day increase in time spent foraging by Colombian Squirels (p = 0.106; r\^2 = 0.0117).**
