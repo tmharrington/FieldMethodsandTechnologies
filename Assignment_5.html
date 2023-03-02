@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Trevor Harrington">
+
+<title>Assignment 5</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="Assignment_5_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Assignment_5_files/libs/quarto-html/quarto.js"></script>
+<script src="Assignment_5_files/libs/quarto-html/popper.min.js"></script>
+<script src="Assignment_5_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Assignment_5_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Assignment_5_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Assignment_5_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Assignment_5_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Assignment_5_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Assignment_5_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+<script src="Assignment_5_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="Assignment_5_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Assignment 5</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Trevor Harrington </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="assignment-5-applying-t-test-and-anova" class="level1">
+<h1>Assignment 5: Applying t-test and ANOVA</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="comparing-the-soil-carbon-concentration-in-traditional-vs.-regenerative-agriculture---t-test" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-the-soil-carbon-concentration-in-traditional-vs.-regenerative-agriculture---t-test">5-1: Comparing the soil carbon concentration in traditional vs.&nbsp;regenerative agriculture - <u>t-test</u></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>datum <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"~/R/Field_methods/Week 9 Assignments/HW 5-dataset1.csv"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>datum <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Agriculture.Practice </th>
+   <th style="text-align:right;"> Carbon </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Traditional </td>
+   <td style="text-align:right;"> 8.8575 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Traditional </td>
+   <td style="text-align:right;"> 9.3341 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Traditional </td>
+   <td style="text-align:right;"> 14.9729 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Traditional </td>
+   <td style="text-align:right;"> 10.2046 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Traditional </td>
+   <td style="text-align:right;"> 18.3221 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Traditional </td>
+   <td style="text-align:right;"> 5.1771 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Traditional </td>
+   <td style="text-align:right;"> 12.2556 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Traditional </td>
+   <td style="text-align:right;"> 16.3186 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Traditional </td>
+   <td style="text-align:right;"> 9.8851 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Traditional </td>
+   <td style="text-align:right;"> 11.8626 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Regenerative </td>
+   <td style="text-align:right;"> 9.2675 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Regenerative </td>
+   <td style="text-align:right;"> 14.3923 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Regenerative </td>
+   <td style="text-align:right;"> 16.1429 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Regenerative </td>
+   <td style="text-align:right;"> 13.8928 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Regenerative </td>
+   <td style="text-align:right;"> 10.8236 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Regenerative </td>
+   <td style="text-align:right;"> 11.0546 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Regenerative </td>
+   <td style="text-align:right;"> 9.6174 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Regenerative </td>
+   <td style="text-align:right;"> 13.7621 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Regenerative </td>
+   <td style="text-align:right;"> 20.7822 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Regenerative </td>
+   <td style="text-align:right;"> 12.8872 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>datum <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Agriculture.Practice     Carbon      
+ Length:20            Min.   : 5.177  
+ Class :character     1st Qu.: 9.818  
+ Mode  :character     Median :12.059  
+                      Mean   :12.491  
+                      3rd Qu.:14.537  
+                      Max.   :20.782  </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datum, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(Agriculture.Practice), <span class="at">y =</span> Carbon, <span class="at">fill =</span> <span class="fu">as.factor</span>(Agriculture.Practice))) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Agriculture Practice"</span>, <span class="at">y =</span> <span class="st">"Carbon"</span>, <span class="at">fill =</span> <span class="st">"Agriculture Practice"</span>, <span class="at">title =</span> <span class="st">"Carbon by Agriculture Practice"</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Assignment_5_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>results<span class="ot">=</span><span class="fu">t.test</span>(Carbon<span class="sc">~</span>Agriculture.Practice,<span class="at">data=</span>datum,<span class="at">var.equal=</span><span class="cn">FALSE</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>results </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  Carbon by Agriculture.Practice
+t = 0.93543, df = 17.716, p-value = 0.3621
+alternative hypothesis: true difference in means between group Regenerative and group Traditional is not equal to 0
+95 percent confidence interval:
+ -1.926781  5.013289
+sample estimates:
+mean in group Regenerative  mean in group Traditional 
+                  13.26227                   11.71902 </code></pre>
+</div>
+</div>
+<ul>
+<li>This model does not find a significant difference between the soil concentration in regenerative vs traditional agricultural practices. 95% confidence interval includes 0 indicating that there is not enough evidence to reject the null hypothesis of no difference in means between the two groups at a significance level of 0.05. ( t=0.9454, p=0.3621)</li>
+</ul>
+</section>
+<section id="comparing-four-bobwhite-quail-habitat-types-and-population-density---anova" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-four-bobwhite-quail-habitat-types-and-population-density---anova">5-1: Comparing Four Bobwhite Quail Habitat types and population density - ANOVA</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>datum <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"~/R/Field_methods/Week 9 Assignments/HW 5-dataset2.csv"</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>datum <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Habitat </th>
+   <th style="text-align:right;"> QuailDens </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> OpenPine </td>
+   <td style="text-align:right;"> 0.7686164 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> OpenPine </td>
+   <td style="text-align:right;"> 0.3755258 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> OpenPine </td>
+   <td style="text-align:right;"> 0.4783116 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> OpenPine </td>
+   <td style="text-align:right;"> 0.2734875 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> OpenPine </td>
+   <td style="text-align:right;"> -0.2298162 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> OpenPine </td>
+   <td style="text-align:right;"> 0.6410679 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> OpenPine </td>
+   <td style="text-align:right;"> 0.6477445 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> OpenPine </td>
+   <td style="text-align:right;"> 0.5834122 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> OpenPine </td>
+   <td style="text-align:right;"> 0.3911914 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> OpenPine </td>
+   <td style="text-align:right;"> 0.1736027 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Prairie </td>
+   <td style="text-align:right;"> 0.9505746 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Prairie </td>
+   <td style="text-align:right;"> 0.3453505 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Prairie </td>
+   <td style="text-align:right;"> 0.4096394 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Prairie </td>
+   <td style="text-align:right;"> 0.1139545 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Prairie </td>
+   <td style="text-align:right;"> 0.5892843 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Prairie </td>
+   <td style="text-align:right;"> 0.6438954 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Prairie </td>
+   <td style="text-align:right;"> 0.6047102 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Prairie </td>
+   <td style="text-align:right;"> -0.1246777 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Prairie </td>
+   <td style="text-align:right;"> -0.0994187 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Prairie </td>
+   <td style="text-align:right;"> 0.9385808 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ClosedPine </td>
+   <td style="text-align:right;"> 0.7074961 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ClosedPine </td>
+   <td style="text-align:right;"> 1.0002411 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ClosedPine </td>
+   <td style="text-align:right;"> 0.8447862 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ClosedPine </td>
+   <td style="text-align:right;"> 1.1158863 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ClosedPine </td>
+   <td style="text-align:right;"> 0.8069477 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ClosedPine </td>
+   <td style="text-align:right;"> 0.9938360 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ClosedPine </td>
+   <td style="text-align:right;"> 0.5594187 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ClosedPine </td>
+   <td style="text-align:right;"> 0.6054311 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ClosedPine </td>
+   <td style="text-align:right;"> 0.7930546 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ClosedPine </td>
+   <td style="text-align:right;"> 0.4831482 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ag </td>
+   <td style="text-align:right;"> 1.1964189 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ag </td>
+   <td style="text-align:right;"> 1.3222130 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ag </td>
+   <td style="text-align:right;"> 0.6448635 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ag </td>
+   <td style="text-align:right;"> 0.8051951 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ag </td>
+   <td style="text-align:right;"> 0.8160560 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ag </td>
+   <td style="text-align:right;"> 1.0147876 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ag </td>
+   <td style="text-align:right;"> 0.5282727 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ag </td>
+   <td style="text-align:right;"> 0.9329513 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ag </td>
+   <td style="text-align:right;"> 0.4162897 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ag </td>
+   <td style="text-align:right;"> 0.4833651 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>datum <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"~/R/Field_methods/Week 9 Assignments/HW 5-dataset2.csv"</span>,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datum) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:left;">   Habitat </th>
+   <th style="text-align:left;">   QuailDens </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> Length:40 </td>
+   <td style="text-align:left;"> Min.   :-0.2298 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> Class :character </td>
+   <td style="text-align:left;"> 1st Qu.: 0.4146 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> Mode  :character </td>
+   <td style="text-align:left;"> Median : 0.6232 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> Mean   : 0.6136 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> 3rd Qu.: 0.8232 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:left;"> Max.   : 1.3222 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>datum <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Habitat, <span class="at">y =</span> QuailDens, <span class="at">fill =</span> Habitat)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Habitat"</span>, <span class="at">y =</span> <span class="st">"Bobwhite Quail Dens"</span>, <span class="at">title =</span> <span class="st">"distribution of Bobwhite Quail Dens by habitat"</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"OpenPine"</span> <span class="ot">=</span> <span class="st">"lightblue"</span>, <span class="st">"ClosedPine"</span> <span class="ot">=</span> <span class="st">"maroon"</span>, <span class="st">"Prarie"</span> <span class="ot">=</span> <span class="st">"darkgreen"</span>, <span class="st">"Ag"</span> <span class="ot">=</span> <span class="st">"orange"</span>)) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Assignment_5_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>hypothesis: From this graph, it looks like there will be no significant statistical difference between Agriculture and Closed pine habitats, or between Open Pine and Prairie habitats . However, between these two groups it seems likely that there will be a statistically significant difference in mean population density.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">aov</span>(QuailDens<span class="sc">~</span><span class="fu">as.factor</span>(Habitat), <span class="at">data=</span> datum)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   Df Sum Sq Mean Sq F value Pr(&gt;F)   
+as.factor(Habitat)  3  1.449  0.4830   5.261 0.0041 **
+Residuals          36  3.305  0.0918                  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = QuailDens ~ as.factor(Habitat), data = datum)
+
+$`as.factor(Habitat)`
+                           diff        lwr         upr     p adj
+ClosedPine-Ag       -0.02501669 -0.3899625  0.33992915 0.9977248
+OpenPine-Ag         -0.40572691 -0.7706728 -0.04078107 0.0244214
+Prairie-Ag          -0.37885197 -0.7437978 -0.01390612 0.0393922
+OpenPine-ClosedPine -0.38071022 -0.7456561 -0.01576438 0.0381385
+Prairie-ClosedPine  -0.35383527 -0.7187811  0.01111057 0.0602106
+Prairie-OpenPine     0.02687494 -0.3380709  0.39182079 0.9971852</code></pre>
+</div>
+</div>
+<ul>
+<li><p>OpenPine-Ag: The estimated difference in population density between the OpenPine and Agriculture habitats is -0.41 individuals per hectare, with a 95% confidence interval ranging from -0.77 to -0.04 individuals per hectare (p = 0.02), indicating a statistically significant difference.</p></li>
+<li><p>Prairie-Ag: The estimated difference in population density between the Prairie and Agriculture habitats is -0.38 individuals per hectare, with a 95% confidence interval ranging from -0.74 to -0.01 individuals per hectare (p = 0.04), indicating a statistically significant difference.</p></li>
+<li><p>ClosedPine-Ag: The estimated difference in population density between the ClosedPine and Agriculture habitats is -0.03 individuals per hectare, with a 95% confidence interval ranging from -0.39 to 0.34 individuals per hectare (p = 0.99), indicating that there is no statistically significant difference.</p></li>
+<li><p>OpenPine-ClosedPine: The estimated difference in population density between the OpenPine and ClosedPine habitats is -0.38 individuals per hectare, with a 95% confidence interval ranging from -0.75 to -0.02 individuals per hectare (p = 0.04), indicating a statistically significant difference.</p></li>
+<li><p>Prairie-ClosedPine: The estimated difference in population density between the Prairie and ClosedPine habitats is -0.35 individuals per hectare, with a 95% confidence interval ranging from -0.72 to 0.01 individuals per hectare (p = 0.06), which is not statistically significant (i.e., p &gt; 0.05).</p></li>
+<li><p>Prairie-OpenPine: The estimated difference in population density between the Prairie and OpenPine habitats is 0.03 individuals per hectare, with a 95% confidence interval ranging from -0.34 to 0.39 individuals per hectare (p = 0.99), indicating that there is no statistically significant difference.</p></li>
+</ul>
+<p>the hypothesis is partially supported. The comparison between Agriculture and Closed Pine habitats did not show a significant difference in population density, which is consistent with the hypothesis. However, the comparison between Open Pine and Prairie habitats did not show a significant difference in population density, which is not consistent with the hypothesis. In addition, the comparison between Prairie and Closed Pine habitats had a p-value of 0.06, which is marginally above the threshold of 0.05 for statistical significance, suggesting a possible difference in population density that should be further investigated. Therefore, while the hypothesis correctly predicted one comparison, it was not entirely accurate for the other comparisons.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,12 +1,11 @@
 ---
 title: "T-Test in RStudio"
 author: "Trevor Harrington"
+format: html
 editor: visual
-output:
-  html_document:
-    code_folding: hide
-execute:
-  keep-md: TRUE 
+execute: 
+  keep-md: TRUE
+  code-fold: TRUE 
 ---
 
 # T-Tests in RStudio: Loblolly vs. Pine Trees
@@ -91,14 +90,13 @@ legend("topright", legend = paste(unique(datum$Tree),
 
 ------------------------------------------------------------------------
 
-## Running a t-test 
+## Running a t-test
 
 ```{r}
 results=t.test(Mass~Tree,data=datum,var.equal=FALSE) ### run a t-test, call results 'results'
 #default is var.equal=FALSE which is standard for t-tests; allows for unequal variance of groups
 results ### prints results - Note absence of 'summary' statement - one of few tests that doesn't use 'summary'
 #Note results don't provide estimate of effect!
-TukeyHSD(results)
 ```
 
 ::: {.callout-note .div style="border: 1px solid #ccc;   background-color: #f2f2f2;   color: #333;   padding: 10px;   margin: 10px 0;" icon="false"}

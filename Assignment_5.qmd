@@ -1,0 +1,105 @@
+---
+title: "Assignment 5"
+author: "Trevor Harrington"
+format: html
+editor: visual
+execute: 
+  keep-md: TRUE
+  code-fold: TRUE
+---
+
+# Assignment 5: Applying t-test and ANOVA
+
+```{r}
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
+library(readr)
+```
+
+## 5-1: Comparing the soil carbon concentration in traditional vs. regenerative agriculture - [t-test]{.underline} 
+
+```{r}
+datum <- read_csv("~/R/Field_methods/Week 9 Assignments/HW 5-dataset1.csv",
+                  show_col_types = FALSE)
+datum %>%
+kable(digits = 4) %>%
+  kable_styling(bootstrap_options = "striped", "hover")
+```
+
+```{r}
+datum %>%
+  summary()
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(data = datum, aes(x = as.factor(Agriculture.Practice), y = Carbon, fill = as.factor(Agriculture.Practice))) +
+  geom_boxplot() +
+  stat_summary(fun = mean, geom = "point", shape = 18, size = 3, color = "black") +
+  labs(x = "Agriculture Practice", y = "Carbon", fill = "Agriculture Practice", title = "Carbon by Agriculture Practice") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+```{r}
+results=t.test(Carbon~Agriculture.Practice,data=datum,var.equal=FALSE)
+
+results 
+```
+
+-   This model does not find a significant difference between the soil concentration in regenerative vs traditional agricultural practices. 95% confidence interval includes 0 indicating that there is not enough evidence to reject the null hypothesis of no difference in means between the two groups at a significance level of 0.05. ( t=0.9454, p=0.3621)
+
+## 5-1: Comparing Four Bobwhite Quail Habitat types and population density - ANOVA
+
+```{r}
+datum <- read_csv("~/R/Field_methods/Week 9 Assignments/HW 5-dataset2.csv",
+                  show_col_types = FALSE)
+datum %>%
+  kable() %>%
+  kable_styling(bootstrap_options = "striped", "hover")
+```
+
+```{r}
+datum <- read_csv("~/R/Field_methods/Week 9 Assignments/HW 5-dataset2.csv",
+                  show_col_types = FALSE)
+summary(datum) %>%
+  kable() %>%
+  kable_styling(bootstrap_options = "striped", "hover")
+```
+
+```{r}
+datum %>% 
+  ggplot(aes(x = Habitat, y = QuailDens, fill = Habitat)) +
+  geom_boxplot() +
+  labs(x = "Habitat", y = "Bobwhite Quail Dens", title = "distribution of Bobwhite Quail Dens by habitat") +
+  scale_fill_manual(values = c("OpenPine" = "lightblue", "ClosedPine" = "maroon", "Prarie" = "darkgreen", "Ag" = "orange")) +
+  theme_classic()
+```
+
+hypothesis: From this graph, it looks like there will be no significant statistical difference between Agriculture and Closed pine habitats, or between Open Pine and Prairie habitats . However, between these two groups it seems likely that there will be a statistically significant difference in mean population density.
+
+```{r}
+results = aov(QuailDens~as.factor(Habitat), data= datum)
+
+summary(results)
+
+TukeyHSD(results)
+```
+
+-   OpenPine-Ag: The estimated difference in population density between the OpenPine and Agriculture habitats is -0.41 individuals per hectare, with a 95% confidence interval ranging from -0.77 to -0.04 individuals per hectare (p = 0.02), indicating a statistically significant difference.
+
+-   Prairie-Ag: The estimated difference in population density between the Prairie and Agriculture habitats is -0.38 individuals per hectare, with a 95% confidence interval ranging from -0.74 to -0.01 individuals per hectare (p = 0.04), indicating a statistically significant difference.
+
+-   ClosedPine-Ag: The estimated difference in population density between the ClosedPine and Agriculture habitats is -0.03 individuals per hectare, with a 95% confidence interval ranging from -0.39 to 0.34 individuals per hectare (p = 0.99), indicating that there is no statistically significant difference.
+
+-   OpenPine-ClosedPine: The estimated difference in population density between the OpenPine and ClosedPine habitats is -0.38 individuals per hectare, with a 95% confidence interval ranging from -0.75 to -0.02 individuals per hectare (p = 0.04), indicating a statistically significant difference.
+
+-   Prairie-ClosedPine: The estimated difference in population density between the Prairie and ClosedPine habitats is -0.35 individuals per hectare, with a 95% confidence interval ranging from -0.72 to 0.01 individuals per hectare (p = 0.06), which is not statistically significant (i.e., p \> 0.05).
+
+-   Prairie-OpenPine: The estimated difference in population density between the Prairie and OpenPine habitats is 0.03 individuals per hectare, with a 95% confidence interval ranging from -0.34 to 0.39 individuals per hectare (p = 0.99), indicating that there is no statistically significant difference.
+
+the hypothesis is partially supported. The comparison between Agriculture and Closed Pine habitats did not show a significant difference in population density, which is consistent with the hypothesis. However, the comparison between Open Pine and Prairie habitats did not show a significant difference in population density, which is not consistent with the hypothesis. In addition, the comparison between Prairie and Closed Pine habitats had a p-value of 0.06, which is marginally above the threshold of 0.05 for statistical significance, suggesting a possible difference in population density that should be further investigated. Therefore, while the hypothesis correctly predicted one comparison, it was not entirely accurate for the other comparisons.
+

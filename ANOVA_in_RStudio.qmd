@@ -1,15 +1,14 @@
 ---
 title: "ANOVA_in_RSTUDIO"
 author: "Trevor Harrington"
+format: html
 editor: visual
-output:
-  html_document:
-    code_folding: "hide"
-execute:
-  keep-md: TRUE 
+keep-md: TRUE
+prefer-html: TRUE
+code-fold: TRUE
 ---
 
-```{r}
+```{r echo= FALSE}
 library(readr)
 library(dplyr)
 library(ggplot2)

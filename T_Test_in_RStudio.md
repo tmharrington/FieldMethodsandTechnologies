@@ -1,12 +1,11 @@
 ---
 title: "T-Test in RStudio"
 author: "Trevor Harrington"
+format: html
 editor: visual
-output:
-  html_document:
-    code_folding: hide
-execute:
-  keep-md: TRUE 
+execute: 
+  keep-md: TRUE
+  code-fold: TRUE 
 ---
 
 
@@ -150,7 +149,7 @@ legend("topright", legend = paste(unique(datum$Tree),
 
 ------------------------------------------------------------------------
 
-## Running a t-test 
+## Running a t-test
 
 
 ::: {.cell}

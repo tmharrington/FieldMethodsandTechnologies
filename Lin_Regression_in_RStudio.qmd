@@ -3,7 +3,9 @@ title: "RegressioninRStudio"
 author: "Trevor Harrington"
 format: html
 editor: visual
-keep-md: TRUE
+execute: 
+  keep-md: TRUE
+  code-fold: TRUE
 ---
 
 ```{r}

@@ -1,22 +1,15 @@
 ---
 title: "ANOVA_in_RSTUDIO"
 author: "Trevor Harrington"
+format: html
 editor: visual
-output:
-  html_document:
-    code_folding: "hide"
-execute:
-  keep-md: TRUE 
+keep-md: TRUE
+prefer-html: TRUE
+code-fold: TRUE
 ---
 
 
 ::: {.cell}
-
-```{.r .cell-code}
-library(readr)
-library(dplyr)
-```
-
 ::: {.cell-output .cell-output-stderr}
 ```
 
@@ -39,10 +32,6 @@ The following objects are masked from 'package:base':
     intersect, setdiff, setequal, union
 ```
 :::
-
-```{.r .cell-code}
-library(ggplot2)
-```
 :::
 
 ::: {.cell}
