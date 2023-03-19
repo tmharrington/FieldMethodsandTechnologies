@@ -5,18 +5,18 @@ format: html
 editor: visual
 execute: 
   keep-md: TRUE
-  code-fold: TRUE
+  code-fold: true
 ---
 
 ```{r}
 library(readr)
-Dataset_1 <- read_csv("~/R/Field_methods/Dataset 1.csv")
+Dataset_1 <- read_csv("C:/School/23SPDAY/FieldMethodsandTech/Practice Data/linear regression/Dataset 1.csv")
 View(Dataset_1)
 
-Dataset_2 <- read_csv("~/R/Field_methods/Dataset 2.csv")
+Dataset_2 <- read_csv("C:/School/23SPDAY/FieldMethodsandTech/Practice Data/linear regression/Dataset 2.csv")
 View(Dataset_2)
 
-Dataset_3 <- read_csv("~/R/Field_methods/Dataset 2.csv")
+Dataset_3 <- read_csv("C:/School/23SPDAY/FieldMethodsandTech/Practice Data/linear regression/Dataset 3.csv")
 View(Dataset_3)
 
 ```

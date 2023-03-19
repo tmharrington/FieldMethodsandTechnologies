@@ -17,7 +17,7 @@ library(kableExtra)
 library(readr)
 ```
 
-## 5-1: Comparing the soil carbon concentration in traditional vs. regenerative agriculture - [t-test]{.underline} 
+## 5-1: Comparing the soil carbon concentration in traditional vs. regenerative agriculture - [t-test]{.underline}
 
 ```{r}
 datum <- read_csv("~/R/Field_methods/Week 9 Assignments/HW 5-dataset1.csv",
@@ -86,14 +86,17 @@ results = aov(QuailDens~as.factor(Habitat), data= datum)
 
 summary(results)
 
+```
+
+```{r}
 TukeyHSD(results)
 ```
 
--   OpenPine-Ag: The estimated difference in population density between the OpenPine and Agriculture habitats is -0.41 individuals per hectare, with a 95% confidence interval ranging from -0.77 to -0.04 individuals per hectare (p = 0.02), indicating a statistically significant difference.
+-   **OpenPine-Ag: The estimated difference in population density between the OpenPine and Agriculture habitats is -0.41 individuals per hectare, with a 95% confidence interval ranging from -0.77 to -0.04 individuals per hectare (p = 0.02), indicating a statistically significant difference.**
 
 -   Prairie-Ag: The estimated difference in population density between the Prairie and Agriculture habitats is -0.38 individuals per hectare, with a 95% confidence interval ranging from -0.74 to -0.01 individuals per hectare (p = 0.04), indicating a statistically significant difference.
 
--   ClosedPine-Ag: The estimated difference in population density between the ClosedPine and Agriculture habitats is -0.03 individuals per hectare, with a 95% confidence interval ranging from -0.39 to 0.34 individuals per hectare (p = 0.99), indicating that there is no statistically significant difference.
+-   **ClosedPine-Ag: The estimated difference in population density between the ClosedPine and Agriculture habitats is -0.03 individuals per hectare, with a 95% confidence interval ranging from -0.39 to 0.34 individuals per hectare (p = 0.99), indicating that there is no statistically significant difference.**
 
 -   OpenPine-ClosedPine: The estimated difference in population density between the OpenPine and ClosedPine habitats is -0.38 individuals per hectare, with a 95% confidence interval ranging from -0.75 to -0.02 individuals per hectare (p = 0.04), indicating a statistically significant difference.
 
@@ -102,4 +105,3 @@ TukeyHSD(results)
 -   Prairie-OpenPine: The estimated difference in population density between the Prairie and OpenPine habitats is 0.03 individuals per hectare, with a 95% confidence interval ranging from -0.34 to 0.39 individuals per hectare (p = 0.99), indicating that there is no statistically significant difference.
 
 the hypothesis is partially supported. The comparison between Agriculture and Closed Pine habitats did not show a significant difference in population density, which is consistent with the hypothesis. However, the comparison between Open Pine and Prairie habitats did not show a significant difference in population density, which is not consistent with the hypothesis. In addition, the comparison between Prairie and Closed Pine habitats had a p-value of 0.06, which is marginally above the threshold of 0.05 for statistical significance, suggesting a possible difference in population density that should be further investigated. Therefore, while the hypothesis correctly predicted one comparison, it was not entirely accurate for the other comparisons.
-

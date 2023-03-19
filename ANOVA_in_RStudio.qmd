@@ -3,9 +3,9 @@ title: "ANOVA_in_RSTUDIO"
 author: "Trevor Harrington"
 format: html
 editor: visual
-keep-md: TRUE
-prefer-html: TRUE
-code-fold: TRUE
+execute: 
+  keep-md: TRUE
+  code-fold: true
 ---
 
 ```{r echo= FALSE}
@@ -15,7 +15,7 @@ library(ggplot2)
 ```
 
 ```{r}
-datum <- read_csv("~/R/Field_methods/Week 9 Assignments/Class Activity 9.csv",
+datum <- read_csv("C:/School/23SPDAY/FieldMethodsandTech/Practice Data/linear regression/anova/Class Activity 9.csv",
                              show_col_types = FALSE)
 names(datum)[names(datum) == "Land use"] <- "land_use"
 list(datum)
@@ -78,6 +78,9 @@ results = aov(Nitrogen~as.factor(land_use), data= datum)
 
 summary(results)
 
+```
+
+```{r}
 TukeyHSD(results)
 ```
 

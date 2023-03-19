@@ -3,9 +3,9 @@ title: "ANOVA_in_RSTUDIO"
 author: "Trevor Harrington"
 format: html
 editor: visual
-keep-md: TRUE
-prefer-html: TRUE
-code-fold: TRUE
+execute: 
+  keep-md: TRUE
+  code-fold: true
 ---
 
 
@@ -37,7 +37,7 @@ The following objects are masked from 'package:base':
 ::: {.cell}
 
 ```{.r .cell-code}
-datum <- read_csv("~/R/Field_methods/Week 9 Assignments/Class Activity 9.csv",
+datum <- read_csv("C:/School/23SPDAY/FieldMethodsandTech/Practice Data/linear regression/anova/Class Activity 9.csv",
                              show_col_types = FALSE)
 names(datum)[names(datum) == "Land use"] <- "land_use"
 list(datum)
@@ -160,6 +160,9 @@ Residuals           41  0.433  0.0106
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 :::
+:::
+
+::: {.cell}
 
 ```{.r .cell-code}
 TukeyHSD(results)

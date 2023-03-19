@@ -66,7 +66,7 @@ If the calculated t-value is greater than the critical value from the table, the
 ### Creating a Table
 
 ```{r}
-datum <- read_csv("~/R/Field_methods/Week 9 Assignments/Class Activity 8.csv",
+datum <- read_csv("C:/School/23SPDAY/FieldMethodsandTech/Practice Data/linear regression/t-testing/Class Activity 8.csv",
                   show_col_types = FALSE)
 head(datum) %>%
 kable(digits = 4) %>%
