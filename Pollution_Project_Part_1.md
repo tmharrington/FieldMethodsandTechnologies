@@ -70,13 +70,126 @@ The following object is masked from 'package:dplyr':
 dbh_near_water <- c(48.2, 32.3, 40.6, 21.0, 44.7)
 dbh_distant_from_water <- c(54.5, 70.2, 29.0, 26.2, 46.7)
 
+# Convert DBH from inches to centimeters
+dbh_near_water <- dbh_near_water * 2.54
+dbh_distant_from_water <- dbh_distant_from_water * 2.54
+
 # Merge datasets and reshape for plotting
 df_near_water <- data.frame(DBH = dbh_near_water, Location = "Near Water")
 df_distant_from_water <- data.frame(DBH = dbh_distant_from_water, Location = "Distant from Water")
 
 # Combine datasets
 combined_df <- rbind(df_near_water, df_distant_from_water)
+
+# Add a column for biomass
+combined_df$"Biomass (kg/tree)" <- (41.173 * combined_df$DBH - 409.5)
+
+
+# Add a column for Carbon (kg/tree)
+combined_df$"Carbon (kg/tree)" <- combined_df$Biomass * 0.45
+
+combined_df$"CO2_per_tree (kg/tree)" <- (combined_df$Carbon * 3.66666666667)
 ```
+:::
+
+::: {.cell}
+
+```{.r .cell-code}
+combined_df %>%
+  kable(digits = 4) %>%
+  kable_styling(bootstrap_options = "striped", "hover")
+```
+
+::: {.cell-output-display}
+
+`````{=html}
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> DBH </th>
+   <th style="text-align:left;"> Location </th>
+   <th style="text-align:right;"> Biomass (kg/tree) </th>
+   <th style="text-align:right;"> Carbon (kg/tree) </th>
+   <th style="text-align:right;"> CO2_per_tree (kg/tree) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 122.428 </td>
+   <td style="text-align:left;"> Near Water </td>
+   <td style="text-align:right;"> 4631.228 </td>
+   <td style="text-align:right;"> 2084.0526 </td>
+   <td style="text-align:right;"> 7641.526 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 82.042 </td>
+   <td style="text-align:left;"> Near Water </td>
+   <td style="text-align:right;"> 2968.415 </td>
+   <td style="text-align:right;"> 1335.7869 </td>
+   <td style="text-align:right;"> 4897.885 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 103.124 </td>
+   <td style="text-align:left;"> Near Water </td>
+   <td style="text-align:right;"> 3836.425 </td>
+   <td style="text-align:right;"> 1726.3910 </td>
+   <td style="text-align:right;"> 6330.100 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 53.340 </td>
+   <td style="text-align:left;"> Near Water </td>
+   <td style="text-align:right;"> 1786.668 </td>
+   <td style="text-align:right;"> 804.0005 </td>
+   <td style="text-align:right;"> 2948.002 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 113.538 </td>
+   <td style="text-align:left;"> Near Water </td>
+   <td style="text-align:right;"> 4265.200 </td>
+   <td style="text-align:right;"> 1919.3400 </td>
+   <td style="text-align:right;"> 7037.580 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 138.430 </td>
+   <td style="text-align:left;"> Distant from Water </td>
+   <td style="text-align:right;"> 5290.078 </td>
+   <td style="text-align:right;"> 2380.5353 </td>
+   <td style="text-align:right;"> 8728.629 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 178.308 </td>
+   <td style="text-align:left;"> Distant from Water </td>
+   <td style="text-align:right;"> 6931.975 </td>
+   <td style="text-align:right;"> 3119.3889 </td>
+   <td style="text-align:right;"> 11437.759 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 73.660 </td>
+   <td style="text-align:left;"> Distant from Water </td>
+   <td style="text-align:right;"> 2623.303 </td>
+   <td style="text-align:right;"> 1180.4864 </td>
+   <td style="text-align:right;"> 4328.450 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 66.548 </td>
+   <td style="text-align:left;"> Distant from Water </td>
+   <td style="text-align:right;"> 2330.481 </td>
+   <td style="text-align:right;"> 1048.7164 </td>
+   <td style="text-align:right;"> 3845.293 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 118.618 </td>
+   <td style="text-align:left;"> Distant from Water </td>
+   <td style="text-align:right;"> 4474.359 </td>
+   <td style="text-align:right;"> 2013.4615 </td>
+   <td style="text-align:right;"> 7382.692 </td>
+  </tr>
+</tbody>
+</table>
+
+`````
+
+:::
 :::
 
 
@@ -90,22 +203,62 @@ These measurements were taken March 20th, 2023 at the SNHU Arboretum for part 1 
 
 -   both plots are only a short distance (100 ft at the furthest) from the walking path, likely a highly disturbed part of the forest.
 
+### Comparing averages of the two plots
+
 
 ::: {.cell}
 
 ```{.r .cell-code}
-# Plot the data using `ggplot2`, boxplot is useful to visualize central tendency and spread, especially when considering categorical variables. 
-ggplot(combined_df, aes(x = Location, y = DBH)) +
-  geom_point() +
-  geom_boxplot(alpha = 0.5) +
-  labs(title = "DBH Comparison: Near Water vs Distant",
+combined_df %>%
+  group_by(Location) %>%
+summarise( "average CO2 (kg CO2/tree)" = mean(`Carbon (kg/tree)`),
+           ) %>%
+kable(digits = 0) %>%
+  kable_styling(bootstrap_options = "striped", "hover")
+```
+
+::: {.cell-output-display}
+
+`````{=html}
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Location </th>
+   <th style="text-align:right;"> average CO2 (kg CO2/tree) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Distant from Water </td>
+   <td style="text-align:right;"> 1949 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Near Water </td>
+   <td style="text-align:right;"> 1574 </td>
+  </tr>
+</tbody>
+</table>
+
+`````
+
+:::
+:::
+
+::: {.cell}
+
+```{.r .cell-code}
+# Plot the data
+ggplot(combined_df) +
+  geom_point(aes(Location,DBH)) +
+  geom_boxplot(aes(Location,DBH)) +
+  labs(title = "DBH Comparison: Near Water vs Distant from Water",
        x = "Location",
-       y = "Diameter at Breast Height (DBH)") +
+       y = "Diameter at Breast Height (DBH, cm)") +
   theme_minimal()
 ```
 
 ::: {.cell-output-display}
-![](Pollution_Project_Part_1_files/figure-html/unnamed-chunk-3-1.png){width=672}
+![](Pollution_Project_Part_1_files/figure-html/unnamed-chunk-5-1.png){width=672}
 :::
 :::
 
@@ -130,10 +283,10 @@ data:  dbh_distant_from_water and dbh_near_water
 t = 0.83622, df = 6.524, p-value = 0.4326
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -14.88615  30.80615
+ -37.81082  78.24762
 sample estimates:
 mean of x mean of y 
-    45.32     37.36 
+ 115.1128   94.8944 
 ```
 :::
 :::

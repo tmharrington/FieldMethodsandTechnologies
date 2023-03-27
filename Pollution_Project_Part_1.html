@@ -98,6 +98,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="Pollution_Project_Part_1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="Pollution_Project_Part_1_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+<script src="Pollution_Project_Part_1_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="Pollution_Project_Part_1_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
 </head>
 
@@ -171,12 +174,117 @@ Attaching package: 'kableExtra'</code></pre>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dbh_near_water <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">48.2</span>, <span class="fl">32.3</span>, <span class="fl">40.6</span>, <span class="fl">21.0</span>, <span class="fl">44.7</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>dbh_distant_from_water <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">54.5</span>, <span class="fl">70.2</span>, <span class="fl">29.0</span>, <span class="fl">26.2</span>, <span class="fl">46.7</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge datasets and reshape for plotting</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>df_near_water <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">DBH =</span> dbh_near_water, <span class="at">Location =</span> <span class="st">"Near Water"</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>df_distant_from_water <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">DBH =</span> dbh_distant_from_water, <span class="at">Location =</span> <span class="st">"Distant from Water"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert DBH from inches to centimeters</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>dbh_near_water <span class="ot">&lt;-</span> dbh_near_water <span class="sc">*</span> <span class="fl">2.54</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>dbh_distant_from_water <span class="ot">&lt;-</span> dbh_distant_from_water <span class="sc">*</span> <span class="fl">2.54</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine datasets</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>combined_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_near_water, df_distant_from_water)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge datasets and reshape for plotting</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>df_near_water <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">DBH =</span> dbh_near_water, <span class="at">Location =</span> <span class="st">"Near Water"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>df_distant_from_water <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">DBH =</span> dbh_distant_from_water, <span class="at">Location =</span> <span class="st">"Distant from Water"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine datasets</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>combined_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_near_water, df_distant_from_water)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a column for biomass</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>combined_df<span class="sc">$</span><span class="st">"Biomass (kg/tree)"</span> <span class="ot">&lt;-</span> (<span class="fl">41.173</span> <span class="sc">*</span> combined_df<span class="sc">$</span>DBH <span class="sc">-</span> <span class="fl">409.5</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a column for Carbon (kg/tree)</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>combined_df<span class="sc">$</span><span class="st">"Carbon (kg/tree)"</span> <span class="ot">&lt;-</span> combined_df<span class="sc">$</span>Biomass <span class="sc">*</span> <span class="fl">0.45</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>combined_df<span class="sc">$</span><span class="st">"CO2_per_tree (kg/tree)"</span> <span class="ot">&lt;-</span> (combined_df<span class="sc">$</span>Carbon <span class="sc">*</span> <span class="fl">3.66666666667</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>combined_df <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> DBH </th>
+   <th style="text-align:left;"> Location </th>
+   <th style="text-align:right;"> Biomass (kg/tree) </th>
+   <th style="text-align:right;"> Carbon (kg/tree) </th>
+   <th style="text-align:right;"> CO2_per_tree (kg/tree) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 122.428 </td>
+   <td style="text-align:left;"> Near Water </td>
+   <td style="text-align:right;"> 4631.228 </td>
+   <td style="text-align:right;"> 2084.0526 </td>
+   <td style="text-align:right;"> 7641.526 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 82.042 </td>
+   <td style="text-align:left;"> Near Water </td>
+   <td style="text-align:right;"> 2968.415 </td>
+   <td style="text-align:right;"> 1335.7869 </td>
+   <td style="text-align:right;"> 4897.885 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 103.124 </td>
+   <td style="text-align:left;"> Near Water </td>
+   <td style="text-align:right;"> 3836.425 </td>
+   <td style="text-align:right;"> 1726.3910 </td>
+   <td style="text-align:right;"> 6330.100 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 53.340 </td>
+   <td style="text-align:left;"> Near Water </td>
+   <td style="text-align:right;"> 1786.668 </td>
+   <td style="text-align:right;"> 804.0005 </td>
+   <td style="text-align:right;"> 2948.002 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 113.538 </td>
+   <td style="text-align:left;"> Near Water </td>
+   <td style="text-align:right;"> 4265.200 </td>
+   <td style="text-align:right;"> 1919.3400 </td>
+   <td style="text-align:right;"> 7037.580 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 138.430 </td>
+   <td style="text-align:left;"> Distant from Water </td>
+   <td style="text-align:right;"> 5290.078 </td>
+   <td style="text-align:right;"> 2380.5353 </td>
+   <td style="text-align:right;"> 8728.629 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 178.308 </td>
+   <td style="text-align:left;"> Distant from Water </td>
+   <td style="text-align:right;"> 6931.975 </td>
+   <td style="text-align:right;"> 3119.3889 </td>
+   <td style="text-align:right;"> 11437.759 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 73.660 </td>
+   <td style="text-align:left;"> Distant from Water </td>
+   <td style="text-align:right;"> 2623.303 </td>
+   <td style="text-align:right;"> 1180.4864 </td>
+   <td style="text-align:right;"> 4328.450 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 66.548 </td>
+   <td style="text-align:left;"> Distant from Water </td>
+   <td style="text-align:right;"> 2330.481 </td>
+   <td style="text-align:right;"> 1048.7164 </td>
+   <td style="text-align:right;"> 3845.293 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 118.618 </td>
+   <td style="text-align:left;"> Distant from Water </td>
+   <td style="text-align:right;"> 4474.359 </td>
+   <td style="text-align:right;"> 2013.4615 </td>
+   <td style="text-align:right;"> 7382.692 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
 </div>
 </section>
 <section id="describing-the-dataset" class="level3">
@@ -187,17 +295,50 @@ Attaching package: 'kableExtra'</code></pre>
 <li><p>This plot represents the bottom of a small slope seperating the walking path of the arboretum and the highway ~ 1/4 mile away</p></li>
 <li><p>both plots are only a short distance (100 ft at the furthest) from the walking path, likely a highly disturbed part of the forest.</p></li>
 </ul>
+</section>
+<section id="comparing-averages-of-the-two-plots" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-averages-of-the-two-plots">Comparing averages of the two plots</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data using `ggplot2`, boxplot is useful to visualize central tendency and spread, especially when considering categorical variables. </span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_df, <span class="fu">aes</span>(<span class="at">x =</span> Location, <span class="at">y =</span> DBH)) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"DBH Comparison: Near Water vs Distant"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Location"</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Diameter at Breast Height (DBH)"</span>) <span class="sc">+</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>combined_df <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Location) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>( <span class="st">"average CO2 (kg CO2/tree)"</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Carbon (kg/tree)</span><span class="st">`</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>           ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="Pollution_Project_Part_1_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Location </th>
+   <th style="text-align:right;"> average CO2 (kg CO2/tree) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Distant from Water </td>
+   <td style="text-align:right;"> 1949 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Near Water </td>
+   <td style="text-align:right;"> 1574 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_df) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(Location,DBH)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(Location,DBH)) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"DBH Comparison: Near Water vs Distant from Water"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Location"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Diameter at Breast Height (DBH, cm)"</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Pollution_Project_Part_1_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -205,7 +346,7 @@ Attaching package: 'kableExtra'</code></pre>
 <h3 class="anchored" data-anchor-id="observations">Observations:</h3>
 <p>Considering the graph, this does seem to support a statistically significant difference between the measurements taken near and far from the stream. Distant from the water, there seems to be a significant amount of deviation from the mean that could account for a much less significant difference between these two groups.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(dbh_distant_from_water,dbh_near_water)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(dbh_distant_from_water,dbh_near_water)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -214,10 +355,10 @@ data:  dbh_distant_from_water and dbh_near_water
 t = 0.83622, df = 6.524, p-value = 0.4326
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -14.88615  30.80615
+ -37.81082  78.24762
 sample estimates:
 mean of x mean of y 
-    45.32     37.36 </code></pre>
+ 115.1128   94.8944 </code></pre>
 </div>
 </div>
 </section>

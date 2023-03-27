@@ -31,12 +31,31 @@ library(kableExtra)
 dbh_near_water <- c(48.2, 32.3, 40.6, 21.0, 44.7)
 dbh_distant_from_water <- c(54.5, 70.2, 29.0, 26.2, 46.7)
 
+# Convert DBH from inches to centimeters
+dbh_near_water <- dbh_near_water * 2.54
+dbh_distant_from_water <- dbh_distant_from_water * 2.54
+
 # Merge datasets and reshape for plotting
 df_near_water <- data.frame(DBH = dbh_near_water, Location = "Near Water")
 df_distant_from_water <- data.frame(DBH = dbh_distant_from_water, Location = "Distant from Water")
 
 # Combine datasets
 combined_df <- rbind(df_near_water, df_distant_from_water)
+
+# Add a column for biomass
+combined_df$"Biomass (kg/tree)" <- (41.173 * combined_df$DBH - 409.5)
+
+
+# Add a column for Carbon (kg/tree)
+combined_df$"Carbon (kg/tree)" <- combined_df$Biomass * 0.45
+
+combined_df$"CO2_per_tree (kg/tree)" <- (combined_df$Carbon * 3.66666666667)
+```
+
+```{r}
+combined_df %>%
+  kable(digits = 4) %>%
+  kable_styling(bootstrap_options = "striped", "hover")
 ```
 
 ### Describing the dataset
@@ -49,14 +68,25 @@ These measurements were taken March 20th, 2023 at the SNHU Arboretum for part 1 
 
 -   both plots are only a short distance (100 ft at the furthest) from the walking path, likely a highly disturbed part of the forest.
 
+### Comparing averages of the two plots
+
 ```{r}
-# Plot the data using `ggplot2`, boxplot is useful to visualize central tendency and spread, especially when considering categorical variables. 
-ggplot(combined_df, aes(x = Location, y = DBH)) +
-  geom_point() +
-  geom_boxplot(alpha = 0.5) +
-  labs(title = "DBH Comparison: Near Water vs Distant",
+combined_df %>%
+  group_by(Location) %>%
+summarise( "average CO2 (kg CO2/tree)" = mean(`Carbon (kg/tree)`),
+           ) %>%
+kable(digits = 0) %>%
+  kable_styling(bootstrap_options = "striped", "hover")
+```
+
+```{r}
+# Plot the data
+ggplot(combined_df) +
+  geom_point(aes(Location,DBH)) +
+  geom_boxplot(aes(Location,DBH)) +
+  labs(title = "DBH Comparison: Near Water vs Distant from Water",
        x = "Location",
-       y = "Diameter at Breast Height (DBH)") +
+       y = "Diameter at Breast Height (DBH, cm)") +
   theme_minimal()
 ```
 
