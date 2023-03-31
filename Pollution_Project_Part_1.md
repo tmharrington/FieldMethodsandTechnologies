@@ -92,11 +92,26 @@ combined_df$"CO2_per_tree (kg/tree)" <- (combined_df$Carbon * 3.66666666667)
 ```
 :::
 
+
+## Describing the dataset
+
+These measurements were taken March 20th, 2023 at the SNHU Arboretum for part 1 of the stream pollution experiment that will be taking place for the remainder of this semester. The first step was to **gather diameter at breast height for two sets of trees in 15 x 15 foot plot**s**.** This data will be useful when considering additional details about the stream.
+
+-   "near water" was measured between 1 and 5 yards around a seasonal second order stream. Trees were measured at breast height in a cluster of \~ 15 feet\^2.
+
+-   This plot represents the bottom of a small slope separating the walking path of the arboretum and the highway \~ 1/4 mile away
+
+-   both plots are only a short distance (100 ft at the furthest) from the walking path, likely a highly disturbed part of the forest.
+
+
 ::: {.cell}
 
 ```{.r .cell-code}
 combined_df %>%
-  kable(digits = 4) %>%
+  
+      mutate_if(is.numeric, comma) %>%
+
+  kable(digits = 1) %>%
   kable_styling(bootstrap_options = "striped", "hover")
 ```
 
@@ -106,83 +121,83 @@ combined_df %>%
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
-   <th style="text-align:right;"> DBH </th>
+   <th style="text-align:left;"> DBH </th>
    <th style="text-align:left;"> Location </th>
-   <th style="text-align:right;"> Biomass (kg/tree) </th>
-   <th style="text-align:right;"> Carbon (kg/tree) </th>
-   <th style="text-align:right;"> CO2_per_tree (kg/tree) </th>
+   <th style="text-align:left;"> Biomass (kg/tree) </th>
+   <th style="text-align:left;"> Carbon (kg/tree) </th>
+   <th style="text-align:left;"> CO2_per_tree (kg/tree) </th>
   </tr>
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:right;"> 48.2 </td>
+   <td style="text-align:left;"> 48.2 </td>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 1575.0386 </td>
-   <td style="text-align:right;"> 708.7674 </td>
-   <td style="text-align:right;"> 2598.8137 </td>
+   <td style="text-align:left;"> 1,575 </td>
+   <td style="text-align:left;"> 709 </td>
+   <td style="text-align:left;"> 2,599 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 32.3 </td>
+   <td style="text-align:left;"> 32.3 </td>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 920.3879 </td>
-   <td style="text-align:right;"> 414.1746 </td>
-   <td style="text-align:right;"> 1518.6400 </td>
+   <td style="text-align:left;"> 920 </td>
+   <td style="text-align:left;"> 414 </td>
+   <td style="text-align:left;"> 1,519 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 40.6 </td>
+   <td style="text-align:left;"> 40.6 </td>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 1262.1238 </td>
-   <td style="text-align:right;"> 567.9557 </td>
-   <td style="text-align:right;"> 2082.5043 </td>
+   <td style="text-align:left;"> 1,262 </td>
+   <td style="text-align:left;"> 568 </td>
+   <td style="text-align:left;"> 2,083 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 21.0 </td>
+   <td style="text-align:left;"> 21.0 </td>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 455.1330 </td>
-   <td style="text-align:right;"> 204.8099 </td>
-   <td style="text-align:right;"> 750.9695 </td>
+   <td style="text-align:left;"> 455 </td>
+   <td style="text-align:left;"> 205 </td>
+   <td style="text-align:left;"> 751 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 44.7 </td>
+   <td style="text-align:left;"> 44.7 </td>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 1430.9331 </td>
-   <td style="text-align:right;"> 643.9199 </td>
-   <td style="text-align:right;"> 2361.0396 </td>
+   <td style="text-align:left;"> 1,431 </td>
+   <td style="text-align:left;"> 644 </td>
+   <td style="text-align:left;"> 2,361 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 54.5 </td>
+   <td style="text-align:left;"> 54.5 </td>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 1834.4285 </td>
-   <td style="text-align:right;"> 825.4928 </td>
-   <td style="text-align:right;"> 3026.8070 </td>
+   <td style="text-align:left;"> 1,834 </td>
+   <td style="text-align:left;"> 825 </td>
+   <td style="text-align:left;"> 3,027 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 70.2 </td>
+   <td style="text-align:left;"> 70.2 </td>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 2480.8446 </td>
-   <td style="text-align:right;"> 1116.3801 </td>
-   <td style="text-align:right;"> 4093.3936 </td>
+   <td style="text-align:left;"> 2,481 </td>
+   <td style="text-align:left;"> 1,116 </td>
+   <td style="text-align:left;"> 4,093 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 29.0 </td>
+   <td style="text-align:left;"> 29.0 </td>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 784.5170 </td>
-   <td style="text-align:right;"> 353.0327 </td>
-   <td style="text-align:right;"> 1294.4531 </td>
+   <td style="text-align:left;"> 785 </td>
+   <td style="text-align:left;"> 353 </td>
+   <td style="text-align:left;"> 1,294 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 26.2 </td>
+   <td style="text-align:left;"> 26.2 </td>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 669.2326 </td>
-   <td style="text-align:right;"> 301.1547 </td>
-   <td style="text-align:right;"> 1104.2338 </td>
+   <td style="text-align:left;"> 669 </td>
+   <td style="text-align:left;"> 301 </td>
+   <td style="text-align:left;"> 1,104 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 46.7 </td>
+   <td style="text-align:left;"> 46.7 </td>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 1513.2791 </td>
-   <td style="text-align:right;"> 680.9756 </td>
-   <td style="text-align:right;"> 2496.9105 </td>
+   <td style="text-align:left;"> 1,513 </td>
+   <td style="text-align:left;"> 681 </td>
+   <td style="text-align:left;"> 2,497 </td>
   </tr>
 </tbody>
 </table>
@@ -193,15 +208,7 @@ combined_df %>%
 :::
 
 
-### Describing the dataset
-
-These measurements were taken March 20th, 2023 at the SNHU Arboretum for part 1 of the stream pollution experiment that will be taking place for the remainder of this semester. The first step was to **gather diameter at breast height for two sets of trees in 15 x 15 foot plot**s**.** This data will be useful when considering additional details about the stream.
-
--   "near water" was measured between 1 and 5 yards around a seasonal second order stream. Trees were measured at breast height in a cluster of \~ 15 feet\^2.
-
--   This plot represents the bottom of a small slope separating the walking path of the arboretum and the highway \~ 1/4 mile away
-
--   both plots are only a short distance (100 ft at the furthest) from the walking path, likely a highly disturbed part of the forest.
+------------------------------------------------------------------------
 
 ### Comparing averages of the two plots
 
@@ -215,7 +222,7 @@ summarise("Average Biomass (kg/tree)" = mean(`Biomass (kg/tree)`),
            "Average Carbon (kg/tree)" = mean(`Carbon (kg/tree)`),
            "Average CO2 (kg/tree)" = mean(`CO2_per_tree (kg/tree)`)
            )%>%
-kable(digits = 0) %>%
+kable(digits = 1) %>%
   kable_styling(bootstrap_options = "striped", "hover")
 ```
 
@@ -234,15 +241,55 @@ kable(digits = 0) %>%
 <tbody>
   <tr>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 1456 </td>
-   <td style="text-align:right;"> 655 </td>
-   <td style="text-align:right;"> 2403 </td>
+   <td style="text-align:right;"> 1456.5 </td>
+   <td style="text-align:right;"> 655.4 </td>
+   <td style="text-align:right;"> 2403.2 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 1129 </td>
-   <td style="text-align:right;"> 508 </td>
-   <td style="text-align:right;"> 1862 </td>
+   <td style="text-align:right;"> 1128.7 </td>
+   <td style="text-align:right;"> 507.9 </td>
+   <td style="text-align:right;"> 1862.4 </td>
+  </tr>
+</tbody>
+</table>
+
+`````
+
+:::
+:::
+
+::: {.cell}
+
+```{.r .cell-code}
+combined_df %>%
+summarise("Combined Average Biomass (kg/tree)" = mean(`Biomass (kg/tree)`),
+           "Combined Average Carbon (kg/tree)" = mean(`Carbon (kg/tree)`),
+           "Combined Average CO2 (kg/tree)" = mean(`CO2_per_tree (kg/tree)`)
+           )%>%
+  
+      mutate_if(is.numeric, comma) %>%
+
+kable(digits = 1) %>%
+  kable_styling(bootstrap_options = "striped", "hover")
+```
+
+::: {.cell-output-display}
+
+`````{=html}
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Combined Average Biomass (kg/tree) </th>
+   <th style="text-align:left;"> Combined Average Carbon (kg/tree) </th>
+   <th style="text-align:left;"> Combined Average CO2 (kg/tree) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 1,293 </td>
+   <td style="text-align:left;"> 582 </td>
+   <td style="text-align:left;"> 2,133 </td>
   </tr>
 </tbody>
 </table>
@@ -266,7 +313,7 @@ ggplot(combined_df) +
 ```
 
 ::: {.cell-output-display}
-![](Pollution_Project_Part_1_files/figure-html/unnamed-chunk-5-1.png){width=672}
+![](Pollution_Project_Part_1_files/figure-html/unnamed-chunk-6-1.png){width=672}
 :::
 :::
 
@@ -302,6 +349,64 @@ mean of x mean of y
 
 ### Observations:
 
-Based on the t-test results for these two groups (t = 0.83622, df = 6.524, p-value = 0.4326), there is no significant difference between the mean DBH of trees near water ( mean = 37.36) and distant from water ( mean = 45.32) at the 95% confidence level. The confidence interval for the difference in means ranges from -14.89 to 30.81, which includes zero, further indicating that the true difference in means might be insignificant.
+Based on the t-test results for these two groups (t = 0.83622, df = 6.524, p-value = 0.4326), there is no significant difference between the mean DBH of trees near water ( mean = 37.36 cm) and distant from water ( mean = 45.32 cm) at the 95% confidence level. The confidence interval for the difference in means ranges from -14.89 to 30.81, which includes zero, further indicating that the true difference in means might be insignificant.
 
-It is likely the small sample size has an impact of the results of this experiment. Expanding the amount of trees observed in each group may provide a more clear deviation between the two groups.
+It is likely the small sample size has an impact of the results of this experiment and expanding the amount of trees observed in each group may provide a more clear deviation between the two groups. Another metric that would likely greatly improve accuracy is a height, which can be used to generate a more accurate estimation for biomass. Overall, this project is a relatively low-confidence example of a CO2 calculation, but accurately describes the process by which this is done.
+
+------------------------------------------------------------------------
+
+## Extrapolating these results Across the SNHU Arboretum
+
+-   Considering the results of these two plots approximately 6.5m\^2 plot, each containing 10 trees with an average of 2132.8 kg CO2 per tree,
+
+
+::: {.cell}
+
+```{.r .cell-code}
+  combined_df %>%
+    
+    summarise(
+     "Total CO2 in Plot (kg/tree)" = 2132.8,
+     "Plot Size (m^2)" = "6.5",
+     "Tree Density (trees/m^2)" = "1.5",
+     "Arboretum Area (m^2)" = 97124,
+     "# in Arboretum Trees" = 97124.6 * 1.5,
+     "CO2 in Arboretum (kg)" = 145686.9 * 2132.8
+    ) %>%
+    
+    mutate_if(is.numeric, comma) %>%
+    
+    kable(digits = 1) %>%
+  kable_styling(bootstrap_options = "striped", "hover")
+```
+
+::: {.cell-output-display}
+
+`````{=html}
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Total CO2 in Plot (kg/tree) </th>
+   <th style="text-align:left;"> Plot Size (m^2) </th>
+   <th style="text-align:left;"> Tree Density (trees/m^2) </th>
+   <th style="text-align:left;"> Arboretum Area (m^2) </th>
+   <th style="text-align:left;"> # in Arboretum Trees </th>
+   <th style="text-align:left;"> CO2 in Arboretum (kg) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 2,133 </td>
+   <td style="text-align:left;"> 6.5 </td>
+   <td style="text-align:left;"> 1.5 </td>
+   <td style="text-align:left;"> 97,124 </td>
+   <td style="text-align:left;"> 145,687 </td>
+   <td style="text-align:left;"> 310,721,020 </td>
+  </tr>
+</tbody>
+</table>
+
+`````
+
+:::
+:::
