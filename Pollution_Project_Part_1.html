@@ -175,8 +175,8 @@ Attaching package: 'kableExtra'</code></pre>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>dbh_distant_from_water <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">54.5</span>, <span class="fl">70.2</span>, <span class="fl">29.0</span>, <span class="fl">26.2</span>, <span class="fl">46.7</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert DBH from inches to centimeters</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>dbh_near_water <span class="ot">&lt;-</span> dbh_near_water <span class="sc">*</span> <span class="fl">2.54</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>dbh_distant_from_water <span class="ot">&lt;-</span> dbh_distant_from_water <span class="sc">*</span> <span class="fl">2.54</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#dbh_near_water &lt;- dbh_near_water * 2.54</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#dbh_distant_from_water &lt;- dbh_distant_from_water * 2.54</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge datasets and reshape for plotting</span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>df_near_water <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">DBH =</span> dbh_near_water, <span class="at">Location =</span> <span class="st">"Near Water"</span>)</span>
@@ -212,74 +212,74 @@ Attaching package: 'kableExtra'</code></pre>
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:right;"> 122.428 </td>
+   <td style="text-align:right;"> 48.2 </td>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 4631.228 </td>
-   <td style="text-align:right;"> 2084.0526 </td>
-   <td style="text-align:right;"> 7641.526 </td>
+   <td style="text-align:right;"> 1575.0386 </td>
+   <td style="text-align:right;"> 708.7674 </td>
+   <td style="text-align:right;"> 2598.8137 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 82.042 </td>
+   <td style="text-align:right;"> 32.3 </td>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 2968.415 </td>
-   <td style="text-align:right;"> 1335.7869 </td>
-   <td style="text-align:right;"> 4897.885 </td>
+   <td style="text-align:right;"> 920.3879 </td>
+   <td style="text-align:right;"> 414.1746 </td>
+   <td style="text-align:right;"> 1518.6400 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 103.124 </td>
+   <td style="text-align:right;"> 40.6 </td>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 3836.425 </td>
-   <td style="text-align:right;"> 1726.3910 </td>
-   <td style="text-align:right;"> 6330.100 </td>
+   <td style="text-align:right;"> 1262.1238 </td>
+   <td style="text-align:right;"> 567.9557 </td>
+   <td style="text-align:right;"> 2082.5043 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 53.340 </td>
+   <td style="text-align:right;"> 21.0 </td>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 1786.668 </td>
-   <td style="text-align:right;"> 804.0005 </td>
-   <td style="text-align:right;"> 2948.002 </td>
+   <td style="text-align:right;"> 455.1330 </td>
+   <td style="text-align:right;"> 204.8099 </td>
+   <td style="text-align:right;"> 750.9695 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 113.538 </td>
+   <td style="text-align:right;"> 44.7 </td>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 4265.200 </td>
-   <td style="text-align:right;"> 1919.3400 </td>
-   <td style="text-align:right;"> 7037.580 </td>
+   <td style="text-align:right;"> 1430.9331 </td>
+   <td style="text-align:right;"> 643.9199 </td>
+   <td style="text-align:right;"> 2361.0396 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 138.430 </td>
+   <td style="text-align:right;"> 54.5 </td>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 5290.078 </td>
-   <td style="text-align:right;"> 2380.5353 </td>
-   <td style="text-align:right;"> 8728.629 </td>
+   <td style="text-align:right;"> 1834.4285 </td>
+   <td style="text-align:right;"> 825.4928 </td>
+   <td style="text-align:right;"> 3026.8070 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 178.308 </td>
+   <td style="text-align:right;"> 70.2 </td>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 6931.975 </td>
-   <td style="text-align:right;"> 3119.3889 </td>
-   <td style="text-align:right;"> 11437.759 </td>
+   <td style="text-align:right;"> 2480.8446 </td>
+   <td style="text-align:right;"> 1116.3801 </td>
+   <td style="text-align:right;"> 4093.3936 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 73.660 </td>
+   <td style="text-align:right;"> 29.0 </td>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 2623.303 </td>
-   <td style="text-align:right;"> 1180.4864 </td>
-   <td style="text-align:right;"> 4328.450 </td>
+   <td style="text-align:right;"> 784.5170 </td>
+   <td style="text-align:right;"> 353.0327 </td>
+   <td style="text-align:right;"> 1294.4531 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 66.548 </td>
+   <td style="text-align:right;"> 26.2 </td>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 2330.481 </td>
-   <td style="text-align:right;"> 1048.7164 </td>
-   <td style="text-align:right;"> 3845.293 </td>
+   <td style="text-align:right;"> 669.2326 </td>
+   <td style="text-align:right;"> 301.1547 </td>
+   <td style="text-align:right;"> 1104.2338 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 118.618 </td>
+   <td style="text-align:right;"> 46.7 </td>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 4474.359 </td>
-   <td style="text-align:right;"> 2013.4615 </td>
-   <td style="text-align:right;"> 7382.692 </td>
+   <td style="text-align:right;"> 1513.2791 </td>
+   <td style="text-align:right;"> 680.9756 </td>
+   <td style="text-align:right;"> 2496.9105 </td>
   </tr>
 </tbody>
 </table>
@@ -292,7 +292,7 @@ Attaching package: 'kableExtra'</code></pre>
 <p>These measurements were taken March 20th, 2023 at the SNHU Arboretum for part 1 of the stream pollution experiment that will be taking place for the remainder of this semester. The first step was to <strong>gather diameter at breast height for two sets of trees in 15 x 15 foot plot</strong>s<strong>.</strong> This data will be useful when considering additional details about the stream.</p>
 <ul>
 <li><p>“near water” was measured between 1 and 5 yards around a seasonal second order stream. Trees were measured at breast height in a cluster of ~ 15 feet^2.</p></li>
-<li><p>This plot represents the bottom of a small slope seperating the walking path of the arboretum and the highway ~ 1/4 mile away</p></li>
+<li><p>This plot represents the bottom of a small slope separating the walking path of the arboretum and the highway ~ 1/4 mile away</p></li>
 <li><p>both plots are only a short distance (100 ft at the furthest) from the walking path, likely a highly disturbed part of the forest.</p></li>
 </ul>
 </section>
@@ -301,27 +301,35 @@ Attaching package: 'kableExtra'</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>combined_df <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Location) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>( <span class="st">"average CO2 (kg CO2/tree)"</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Carbon (kg/tree)</span><span class="st">`</span>),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>           ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="st">"Average Biomass (kg/tree)"</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Biomass (kg/tree)</span><span class="st">`</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Average Carbon (kg/tree)"</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Carbon (kg/tree)</span><span class="st">`</span>),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Average CO2 (kg/tree)"</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">CO2_per_tree (kg/tree)</span><span class="st">`</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>           )<span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:left;"> Location </th>
-   <th style="text-align:right;"> average CO2 (kg CO2/tree) </th>
+   <th style="text-align:right;"> Average Biomass (kg/tree) </th>
+   <th style="text-align:right;"> Average Carbon (kg/tree) </th>
+   <th style="text-align:right;"> Average CO2 (kg/tree) </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 1949 </td>
+   <td style="text-align:right;"> 1456 </td>
+   <td style="text-align:right;"> 655 </td>
+   <td style="text-align:right;"> 2403 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 1574 </td>
+   <td style="text-align:right;"> 1129 </td>
+   <td style="text-align:right;"> 508 </td>
+   <td style="text-align:right;"> 1862 </td>
   </tr>
 </tbody>
 </table>
@@ -355,10 +363,10 @@ data:  dbh_distant_from_water and dbh_near_water
 t = 0.83622, df = 6.524, p-value = 0.4326
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -37.81082  78.24762
+ -14.88615  30.80615
 sample estimates:
 mean of x mean of y 
- 115.1128   94.8944 </code></pre>
+    45.32     37.36 </code></pre>
 </div>
 </div>
 </section>

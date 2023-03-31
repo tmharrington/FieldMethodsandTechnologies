@@ -71,8 +71,8 @@ dbh_near_water <- c(48.2, 32.3, 40.6, 21.0, 44.7)
 dbh_distant_from_water <- c(54.5, 70.2, 29.0, 26.2, 46.7)
 
 # Convert DBH from inches to centimeters
-dbh_near_water <- dbh_near_water * 2.54
-dbh_distant_from_water <- dbh_distant_from_water * 2.54
+#dbh_near_water <- dbh_near_water * 2.54
+#dbh_distant_from_water <- dbh_distant_from_water * 2.54
 
 # Merge datasets and reshape for plotting
 df_near_water <- data.frame(DBH = dbh_near_water, Location = "Near Water")
@@ -115,74 +115,74 @@ combined_df %>%
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:right;"> 122.428 </td>
+   <td style="text-align:right;"> 48.2 </td>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 4631.228 </td>
-   <td style="text-align:right;"> 2084.0526 </td>
-   <td style="text-align:right;"> 7641.526 </td>
+   <td style="text-align:right;"> 1575.0386 </td>
+   <td style="text-align:right;"> 708.7674 </td>
+   <td style="text-align:right;"> 2598.8137 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 82.042 </td>
+   <td style="text-align:right;"> 32.3 </td>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 2968.415 </td>
-   <td style="text-align:right;"> 1335.7869 </td>
-   <td style="text-align:right;"> 4897.885 </td>
+   <td style="text-align:right;"> 920.3879 </td>
+   <td style="text-align:right;"> 414.1746 </td>
+   <td style="text-align:right;"> 1518.6400 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 103.124 </td>
+   <td style="text-align:right;"> 40.6 </td>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 3836.425 </td>
-   <td style="text-align:right;"> 1726.3910 </td>
-   <td style="text-align:right;"> 6330.100 </td>
+   <td style="text-align:right;"> 1262.1238 </td>
+   <td style="text-align:right;"> 567.9557 </td>
+   <td style="text-align:right;"> 2082.5043 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 53.340 </td>
+   <td style="text-align:right;"> 21.0 </td>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 1786.668 </td>
-   <td style="text-align:right;"> 804.0005 </td>
-   <td style="text-align:right;"> 2948.002 </td>
+   <td style="text-align:right;"> 455.1330 </td>
+   <td style="text-align:right;"> 204.8099 </td>
+   <td style="text-align:right;"> 750.9695 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 113.538 </td>
+   <td style="text-align:right;"> 44.7 </td>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 4265.200 </td>
-   <td style="text-align:right;"> 1919.3400 </td>
-   <td style="text-align:right;"> 7037.580 </td>
+   <td style="text-align:right;"> 1430.9331 </td>
+   <td style="text-align:right;"> 643.9199 </td>
+   <td style="text-align:right;"> 2361.0396 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 138.430 </td>
+   <td style="text-align:right;"> 54.5 </td>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 5290.078 </td>
-   <td style="text-align:right;"> 2380.5353 </td>
-   <td style="text-align:right;"> 8728.629 </td>
+   <td style="text-align:right;"> 1834.4285 </td>
+   <td style="text-align:right;"> 825.4928 </td>
+   <td style="text-align:right;"> 3026.8070 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 178.308 </td>
+   <td style="text-align:right;"> 70.2 </td>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 6931.975 </td>
-   <td style="text-align:right;"> 3119.3889 </td>
-   <td style="text-align:right;"> 11437.759 </td>
+   <td style="text-align:right;"> 2480.8446 </td>
+   <td style="text-align:right;"> 1116.3801 </td>
+   <td style="text-align:right;"> 4093.3936 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 73.660 </td>
+   <td style="text-align:right;"> 29.0 </td>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 2623.303 </td>
-   <td style="text-align:right;"> 1180.4864 </td>
-   <td style="text-align:right;"> 4328.450 </td>
+   <td style="text-align:right;"> 784.5170 </td>
+   <td style="text-align:right;"> 353.0327 </td>
+   <td style="text-align:right;"> 1294.4531 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 66.548 </td>
+   <td style="text-align:right;"> 26.2 </td>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 2330.481 </td>
-   <td style="text-align:right;"> 1048.7164 </td>
-   <td style="text-align:right;"> 3845.293 </td>
+   <td style="text-align:right;"> 669.2326 </td>
+   <td style="text-align:right;"> 301.1547 </td>
+   <td style="text-align:right;"> 1104.2338 </td>
   </tr>
   <tr>
-   <td style="text-align:right;"> 118.618 </td>
+   <td style="text-align:right;"> 46.7 </td>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 4474.359 </td>
-   <td style="text-align:right;"> 2013.4615 </td>
-   <td style="text-align:right;"> 7382.692 </td>
+   <td style="text-align:right;"> 1513.2791 </td>
+   <td style="text-align:right;"> 680.9756 </td>
+   <td style="text-align:right;"> 2496.9105 </td>
   </tr>
 </tbody>
 </table>
@@ -199,7 +199,7 @@ These measurements were taken March 20th, 2023 at the SNHU Arboretum for part 1 
 
 -   "near water" was measured between 1 and 5 yards around a seasonal second order stream. Trees were measured at breast height in a cluster of \~ 15 feet\^2.
 
--   This plot represents the bottom of a small slope seperating the walking path of the arboretum and the highway \~ 1/4 mile away
+-   This plot represents the bottom of a small slope separating the walking path of the arboretum and the highway \~ 1/4 mile away
 
 -   both plots are only a short distance (100 ft at the furthest) from the walking path, likely a highly disturbed part of the forest.
 
@@ -211,8 +211,10 @@ These measurements were taken March 20th, 2023 at the SNHU Arboretum for part 1 
 ```{.r .cell-code}
 combined_df %>%
   group_by(Location) %>%
-summarise( "average CO2 (kg CO2/tree)" = mean(`Carbon (kg/tree)`),
-           ) %>%
+summarise("Average Biomass (kg/tree)" = mean(`Biomass (kg/tree)`),
+           "Average Carbon (kg/tree)" = mean(`Carbon (kg/tree)`),
+           "Average CO2 (kg/tree)" = mean(`CO2_per_tree (kg/tree)`)
+           )%>%
 kable(digits = 0) %>%
   kable_styling(bootstrap_options = "striped", "hover")
 ```
@@ -224,17 +226,23 @@ kable(digits = 0) %>%
  <thead>
   <tr>
    <th style="text-align:left;"> Location </th>
-   <th style="text-align:right;"> average CO2 (kg CO2/tree) </th>
+   <th style="text-align:right;"> Average Biomass (kg/tree) </th>
+   <th style="text-align:right;"> Average Carbon (kg/tree) </th>
+   <th style="text-align:right;"> Average CO2 (kg/tree) </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:left;"> Distant from Water </td>
-   <td style="text-align:right;"> 1949 </td>
+   <td style="text-align:right;"> 1456 </td>
+   <td style="text-align:right;"> 655 </td>
+   <td style="text-align:right;"> 2403 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Near Water </td>
-   <td style="text-align:right;"> 1574 </td>
+   <td style="text-align:right;"> 1129 </td>
+   <td style="text-align:right;"> 508 </td>
+   <td style="text-align:right;"> 1862 </td>
   </tr>
 </tbody>
 </table>
@@ -263,7 +271,7 @@ ggplot(combined_df) +
 :::
 
 
-### Observations: 
+### Observations:
 
 Considering the graph, this does seem to support a statistically significant difference between the measurements taken near and far from the stream. Distant from the water, there seems to be a significant amount of deviation from the mean that could account for a much less significant difference between these two groups.
 
@@ -283,10 +291,10 @@ data:  dbh_distant_from_water and dbh_near_water
 t = 0.83622, df = 6.524, p-value = 0.4326
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -37.81082  78.24762
+ -14.88615  30.80615
 sample estimates:
 mean of x mean of y 
- 115.1128   94.8944 
+    45.32     37.36 
 ```
 :::
 :::
