@@ -148,3 +148,21 @@ It is likely the small sample size has an impact of the results of this experime
     kable(digits = 1) %>%
   kable_styling(bootstrap_options = "striped", "hover")
 ```
+
+------------------------------------------------------------------------
+
+# Part 1 Final Report: 
+
+## Introduction
+
+The objective of this study was to choose two five by five meter plots in the SNHU arboretum as representatives of tree size close to a water source, versus further away. For this first part of this study, the measurements taken in these plots are used to determine biomass, which can be leveraged to calculate carbon and CO2 sequestration using a given conversion factor. For the second part of this study, tree density calculated in these two plots will be used to try and estimate the amount of trees present, and by extension the amount of CO2 sequestered by the SNHU Arboretum.
+
+This study collected measurements of diameter at breast height (DBH) for five trees within each of the plots. Because trees grow at fairly consistent rates (depending on the species), DBH is an essential metric in both forestry and environmental research for understanding a number of factors about a forest. On top of those being calculated in this study, DBH can be important for understanding tree age and health, wildlife habitat assessments, and forest management / inventory surveys.
+
+Biomass is the mass of living organisms in a given area, and provides a crucial measurement for understanding ecological health and carbon sequestration in a forest or ecosystem. In this study, biomass is study in situ and only provides a estimated value but prevents the need of harming the environment for this study.
+
+## Materials and Methods
+
+For this study, biomass is calculated using the allometric scaling equation $41.173 * DBH - 409.5$. The value for DBH in this equation, and the value recorded in the data is centimeters,
+
+## Results
