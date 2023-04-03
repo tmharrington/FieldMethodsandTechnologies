@@ -84,6 +84,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -136,80 +155,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="snhu-arboretum-stream-pollution-project" class="level1">
 <h1>SNHU Arboretum Stream Pollution Project</h1>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
 
-    filter, lag</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'kableExtra'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:dplyr':
-
-    group_rows</code></pre>
-</div>
-</div>
-<section id="writing-and-organizing-the-data-in-r-studio" class="level3">
-<h3 class="anchored" data-anchor-id="writing-and-organizing-the-data-in-r-studio">Writing and organizing the Data in R Studio</h3>
-<ul>
-<li><p>before analysis on DBH can be accomplished, both of the variables containing DBH will need to be converted into a data frame in R Studio.</p>
-<ul>
-<li><p>This could be done with code, but the excel file would need to be organized where each sheet contains a dataset, and is individually piped into R with excel plugin.</p></li>
-<li><p>Because this data set only contains 10 vectors, the easiest method will be manually entering DBH into R.</p></li>
-</ul></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate variables for each set of vectors</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dbh_near_water <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">48.2</span>, <span class="fl">32.3</span>, <span class="fl">40.6</span>, <span class="fl">21.0</span>, <span class="fl">44.7</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>dbh_distant_from_water <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">54.5</span>, <span class="fl">70.2</span>, <span class="fl">29.0</span>, <span class="fl">26.2</span>, <span class="fl">46.7</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert DBH from inches to centimeters</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#dbh_near_water &lt;- dbh_near_water * 2.54</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#dbh_distant_from_water &lt;- dbh_distant_from_water * 2.54</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge datasets and reshape for plotting</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>df_near_water <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">DBH =</span> dbh_near_water, <span class="at">Location =</span> <span class="st">"Near Water"</span>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>df_distant_from_water <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">DBH =</span> dbh_distant_from_water, <span class="at">Location =</span> <span class="st">"Distant from Water"</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine datasets</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>combined_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_near_water, df_distant_from_water)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a column for biomass</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>combined_df<span class="sc">$</span><span class="st">"Biomass (kg/tree)"</span> <span class="ot">&lt;-</span> (<span class="fl">41.173</span> <span class="sc">*</span> combined_df<span class="sc">$</span>DBH <span class="sc">-</span> <span class="fl">409.5</span>)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a column for Carbon (kg/tree)</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>combined_df<span class="sc">$</span><span class="st">"Carbon (kg/tree)"</span> <span class="ot">&lt;-</span> combined_df<span class="sc">$</span>Biomass <span class="sc">*</span> <span class="fl">0.45</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>combined_df<span class="sc">$</span><span class="st">"CO2_per_tree (kg/tree)"</span> <span class="ot">&lt;-</span> (combined_df<span class="sc">$</span>Carbon <span class="sc">*</span> <span class="fl">3.66666666667</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<hr>
 </section>
-<section id="describing-the-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="describing-the-dataset">Describing the dataset</h2>
-<p>These measurements were taken March 20th, 2023 at the SNHU Arboretum for part 1 of the stream pollution experiment that will be taking place for the remainder of this semester. The first step was to <strong>gather diameter at breast height for two sets of trees in 15 x 15 foot plot</strong>s<strong>.</strong> This data will be useful when considering additional details about the stream.</p>
-<ul>
-<li><p>“near water” was measured between 1 and 5 yards around a seasonal second order stream. Trees were measured at breast height in a cluster of ~ 15 feet^2.</p></li>
-<li><p>This plot represents the bottom of a small slope separating the walking path of the arboretum and the highway ~ 1/4 mile away</p></li>
-<li><p>both plots are only a short distance (100 ft at the furthest) from the walking path, likely a highly disturbed part of the forest.</p></li>
-</ul>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>The objective of this study was to choose two five by five meter plots in the SNHU arboretum as representatives of tree size close to a water source, versus further away. For this first part of this study, the measurements taken in these plots are used to determine biomass, which can be leveraged to calculate carbon and CO2 sequestration using a given conversion factor. For the second part of this study, tree density calculated in these two plots will be used to try and estimate the amount of trees present, and by extension the amount of CO2 sequestered by the SNHU Arboretum.</p>
+<p>This study collected measurements of diameter at breast height (DBH) for five trees within each of the plots. Because trees grow at fairly consistent rates (depending on the species), DBH is an essential metric in both forestry and environmental research for understanding a number of factors about a forest. On top of those being calculated in this study, DBH can be important for understanding tree age and health, wildlife habitat assessments, and forest management / inventory surveys.</p>
+<p>Biomass is the mass of living organisms in a given area, and provides a crucial measurement for understanding ecological health and carbon sequestration in a forest or ecosystem. In this study, biomass is study in situ and only provides a estimated value; less accuracy, but at no cost to the trees or ecosystem <span class="citation" data-cites="vorster2020">Vorster et al. (<a href="#ref-vorster2020" role="doc-biblioref">2020</a>)</span>. One of the most important characteristics</p>
+<hr>
+</section>
+<section id="materials-and-methods" class="level2">
+<h2 class="anchored" data-anchor-id="materials-and-methods">Materials and Methods</h2>
+<p>On March 20th, 2023, measurements were taken at the SNHU Arboretum in the vicinity of a stream pollution experiment scheduled for the remainder of the semester. In this study, biomass is calculated using the allometric scaling equation with the diameter at breast height (DBH) in centimeters. measurements were recorded directly into a word document using and iPad pro. Quality of the observations was accounted for by using multiple people to verify measurements. Plots were chosen for this experiment due to proximity to a water source, as well as elevation to see if any impact to DBH can be identified at a factor of access to water.</p>
+<p>The initial step involved collecting DBH data for two sets of trees within 15 x 15-foot plots. This information will be beneficial when examining further details about the stream. The “near water” trees were measured within a range of 1 to 5 yards surrounding a seasonal second-order stream as it flows through a tunnel beneath a pathway. Located approximately 100 feet from the parking lot, this plot experiences significant foot traffic. The “distant from water” plot was situated roughly 75 feet from the initial point, away from pedestrian areas. Trees within a 15 square feet cluster were measured at breast height using a tape measure.</p>
+<p>The following code was created to analyze the DBH data. Both datasets are initially converted into a data frame in R Studio. Ideally, the original Excel file should be linked, but since the data set only comprises 10 variables, manually entering the DBH values into R is the most straightforward approach. The code’s annotations provide detailed explanations of the calculations, eliminating the need for a separate methods description.</p>
+<hr>
+<section id="i---calculating-biomass-carbon-co2-sequestration-for-each-plots" class="level3">
+<h3 class="anchored" data-anchor-id="i---calculating-biomass-carbon-co2-sequestration-for-each-plots">I - Calculating Biomass, Carbon &amp; CO2 Sequestration for Each Plots</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>combined_df <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate_if</span>(is.numeric, comma) <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate variables for each set of vectors</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dbh_near_water <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">48.2</span>, <span class="fl">32.3</span>, <span class="fl">40.6</span>, <span class="fl">21.0</span>, <span class="fl">44.7</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dbh_distant_from_water <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">54.5</span>, <span class="fl">70.2</span>, <span class="fl">29.0</span>, <span class="fl">26.2</span>, <span class="fl">46.7</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert DBH from inches to centimeters</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#dbh_near_water &lt;- dbh_near_water * 2.54</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#dbh_distant_from_water &lt;- dbh_distant_from_water * 2.54</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape datasets into dataframes and merge into a dataframe</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df_near_water <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">DBH =</span> dbh_near_water, <span class="at">Location =</span> <span class="st">"Near Water"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>df_distant_from_water <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">DBH =</span> dbh_distant_from_water, <span class="at">Location =</span> <span class="st">"Distant from Water"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>combined_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_near_water, df_distant_from_water)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a column to the dataframe for biomass</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Biomass is calculated using the allometric equation provided in class</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>combined_df<span class="sc">$</span><span class="st">"Biomass (kg/tree)"</span> <span class="ot">&lt;-</span> (<span class="fl">41.173</span> <span class="sc">*</span> combined_df<span class="sc">$</span>DBH <span class="sc">-</span> <span class="fl">409.5</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a column for Carbon (kg/tree) </span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="do">## Carbon is found by multiplying biomass by the % mass that is carbon. This value (45%) provides a general estimate for carbon, useful for in situ studies. </span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>combined_df<span class="sc">$</span><span class="st">"Carbon (kg/tree)"</span> <span class="ot">&lt;-</span> combined_df<span class="sc">$</span>Biomass <span class="sc">*</span> <span class="fl">0.45</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a column for CO2 (kg/tree)</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="do">## CO2 is found by multiplying Carbon by the difference between the molar masses. This is done to determine the amount of potential atmospheric carbon that could be generated if the tree was used for combustion. </span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>combined_df<span class="sc">$</span><span class="st">"CO2_per_tree (kg/tree)"</span> <span class="ot">&lt;-</span> (combined_df<span class="sc">$</span>Carbon <span class="sc">*</span> <span class="fl">3.66666666667</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="listing-results" class="level4">
+<h4 class="anchored" data-anchor-id="listing-results">Listing results</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>combined_df <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate_if</span>(is.numeric, comma) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
@@ -299,17 +303,19 @@ Attaching package: 'kableExtra'</code></pre>
 </div>
 </div>
 <hr>
-<section id="comparing-averages-of-the-two-plots" class="level3">
-<h3 class="anchored" data-anchor-id="comparing-averages-of-the-two-plots">Comparing averages of the two plots</h3>
+</section>
+</section>
+<section id="ii---calculating-averages-for-each-plot" class="level3">
+<h3 class="anchored" data-anchor-id="ii---calculating-averages-for-each-plot">II - Calculating Averages for Each Plot</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>combined_df <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Location) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="st">"Average Biomass (kg/tree)"</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Biomass (kg/tree)</span><span class="st">`</span>),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Average Carbon (kg/tree)"</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Carbon (kg/tree)</span><span class="st">`</span>),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Average CO2 (kg/tree)"</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">CO2_per_tree (kg/tree)</span><span class="st">`</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>           )<span class="sc">%&gt;%</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>combined_df <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Location) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="st">"Average Biomass (kg/tree)"</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Biomass (kg/tree)</span><span class="st">`</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Average Carbon (kg/tree)"</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Carbon (kg/tree)</span><span class="st">`</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Average CO2 (kg/tree)"</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">CO2_per_tree (kg/tree)</span><span class="st">`</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>           )<span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
@@ -339,57 +345,27 @@ Attaching package: 'kableExtra'</code></pre>
 
 </div>
 </div>
+<section id="graphing-results" class="level4">
+<h4 class="anchored" data-anchor-id="graphing-results">Graphing Results</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>combined_df <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="st">"Combined Average Biomass (kg/tree)"</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Biomass (kg/tree)</span><span class="st">`</span>),</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Combined Average Carbon (kg/tree)"</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Carbon (kg/tree)</span><span class="st">`</span>),</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Combined Average CO2 (kg/tree)"</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">CO2_per_tree (kg/tree)</span><span class="st">`</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>           )<span class="sc">%&gt;%</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate_if</span>(is.numeric, comma) <span class="sc">%&gt;%</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_df) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(Location,DBH)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(Location,DBH)) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"DBH Comparison: Near Water vs Distant from Water"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Location"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Diameter at Breast Height (DBH, cm)"</span>) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
-<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;"> Combined Average Biomass (kg/tree) </th>
-   <th style="text-align:left;"> Combined Average Carbon (kg/tree) </th>
-   <th style="text-align:left;"> Combined Average CO2 (kg/tree) </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 1,293 </td>
-   <td style="text-align:left;"> 582 </td>
-   <td style="text-align:left;"> 2,133 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_df) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(Location,DBH)) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(Location,DBH)) <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"DBH Comparison: Near Water vs Distant from Water"</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Location"</span>,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Diameter at Breast Height (DBH, cm)"</span>) <span class="sc">+</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="Pollution_Project_Part_1_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="Pollution_Project_Part_1_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
-<section id="observations" class="level3">
-<h3 class="anchored" data-anchor-id="observations">Observations:</h3>
-<p>Considering the graph, this does seem to support a statistically significant difference between the measurements taken near and far from the stream. Distant from the water, there seems to be a significant amount of deviation from the mean that could account for a much less significant difference between these two groups.</p>
+</section>
+<section id="running-t-test-for-to-compare-dbh-between-the-plots" class="level3">
+<h3 class="anchored" data-anchor-id="running-t-test-for-to-compare-dbh-between-the-plots">Running t-test for to compare DBH between the plots</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(dbh_distant_from_water,dbh_near_water)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(dbh_distant_from_water,dbh_near_water)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -404,35 +380,26 @@ mean of x mean of y
     45.32     37.36 </code></pre>
 </div>
 </div>
-</section>
-<section id="observations-1" class="level3">
-<h3 class="anchored" data-anchor-id="observations-1">Observations:</h3>
-<p>Based on the t-test results for these two groups (t = 0.83622, df = 6.524, p-value = 0.4326), there is no significant difference between the mean DBH of trees near water ( mean = 37.36 cm) and distant from water ( mean = 45.32 cm) at the 95% confidence level. The confidence interval for the difference in means ranges from -14.89 to 30.81, which includes zero, further indicating that the true difference in means might be insignificant.</p>
-<p>It is likely the small sample size has an impact of the results of this experiment and expanding the amount of trees observed in each group may provide a more clear deviation between the two groups. Another metric that would likely greatly improve accuracy is a height, which can be used to generate a more accurate estimation for biomass. Overall, this project is a relatively low-confidence example of a CO2 calculation, but accurately describes the process by which this is done.</p>
 <hr>
 </section>
-</section>
-<section id="extrapolating-these-results-across-the-snhu-arboretum" class="level2">
-<h2 class="anchored" data-anchor-id="extrapolating-these-results-across-the-snhu-arboretum">Extrapolating these results Across the SNHU Arboretum</h2>
-<ul>
-<li>Considering the results of these two plots approximately 6.5m^2 plot, each containing 10 trees with an average of 2132.8 kg CO2 per tree,</li>
-</ul>
+<section id="iii---extrapolating-the-results-for-the-arboretum" class="level3">
+<h3 class="anchored" data-anchor-id="iii---extrapolating-the-results-for-the-arboretum">III - Extrapolating the Results for the Arboretum</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  combined_df <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Total CO2 in Plot (kg/tree)"</span> <span class="ot">=</span> <span class="fl">2132.8</span>,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Plot Size (m^2)"</span> <span class="ot">=</span> <span class="st">"6.5"</span>,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Tree Density (trees/m^2)"</span> <span class="ot">=</span> <span class="st">"1.5"</span>,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Arboretum Area (m^2)"</span> <span class="ot">=</span> <span class="dv">97124</span>,</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>     <span class="st">"# in Arboretum Trees"</span> <span class="ot">=</span> <span class="fl">97124.6</span> <span class="sc">*</span> <span class="fl">1.5</span>,</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>     <span class="st">"CO2 in Arboretum (kg)"</span> <span class="ot">=</span> <span class="fl">145686.9</span> <span class="sc">*</span> <span class="fl">2132.8</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate_if</span>(is.numeric, comma) <span class="sc">%&gt;%</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  combined_df <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Total CO2 in Plot (kg/tree)"</span> <span class="ot">=</span> <span class="fl">2132.8</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Plot Size (m^2)"</span> <span class="ot">=</span> <span class="st">"6.5"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Tree Density (trees/m^2)"</span> <span class="ot">=</span> <span class="st">"1.5"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Arboretum Area (m^2)"</span> <span class="ot">=</span> <span class="dv">97124</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>     <span class="st">"# in Arboretum Trees"</span> <span class="ot">=</span> <span class="fl">97124.6</span> <span class="sc">*</span> <span class="fl">1.5</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>     <span class="st">"CO2 in Arboretum (kg)"</span> <span class="ot">=</span> <span class="fl">145686.9</span> <span class="sc">*</span> <span class="fl">2132.8</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate_if</span>(is.numeric, comma) <span class="sc">%&gt;%</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
@@ -460,10 +427,24 @@ mean of x mean of y
 
 </div>
 </div>
+<hr>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>Based on the t-test results for these two groups (t = 0.83622, df = 6.524, p-value = 0.4326), there is no significant difference between the mean DBH of trees near water ( mean = 37.36 cm) and distant from water ( mean = 45.32 cm) at the 95% confidence level. The confidence interval for the difference in means ranges from -14.89 to 30.81, which includes zero, further indicating that the true difference in means might be insignificant.</p>
+<p>It is likely the small sample size has an impact of the results of this experiment and expanding the amount of trees observed in each group may provide a more clear deviation between the two groups. Another metric that would likely greatly improve accuracy is a height, which can be used to generate a more accurate estimation for biomass. Overall, this project is a relatively low-confidence example of a CO2 calculation, but accurately describes the process by which this is done.</p>
+<p>The results of this this study were used in part III to attempt to estimate the total carbon sequestration present in the biomass in the SNHU arboretum. These results were estimated based of a 24 square mile estimate found <span class="citation" data-cites="Arbnet">(<a href="#ref-Arbnet" role="doc-biblioref"><strong>Arbnet?</strong></a>)</span></p>
+<p>Considering the graph, this does seem to support a statistically significant difference between the measurements taken near and far from the stream. Distant from the water, there seems to be a significant amount of deviation from the mean that could account for a much less significant difference between these two groups.</p>
+
 </section>
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-vorster2020" class="csl-entry" role="doc-biblioentry">
+Vorster, Anthony G., Paul H. Evangelista, Atticus E. L. Stovall, and Seth Ex. 2020. <span>“Variability and Uncertainty in Forest Biomass Estimates from the Tree to Landscape Scale: The Role of Allometric Equations.”</span> <em>Carbon Balance and Management</em> 15 (1). <a href="https://doi.org/10.1186/s13021-020-00143-6">https://doi.org/10.1186/s13021-020-00143-6</a>.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
