@@ -3,9 +3,9 @@ title: "Pollution Project - DBH"
 author: "Trevor Harrington"
 format: html
 editor: visual
-execute: 
-  keep-md: TRUE
-  code-fold: TRUE
+keep-md: TRUE
+prefer-html: TRUE
+code-fold: TRUE
 bibliography: references.bib
 ---
 

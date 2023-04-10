@@ -3,9 +3,9 @@ title: "ANOVA_in_RSTUDIO"
 author: "Trevor Harrington"
 format: html
 editor: visual
-execute: 
-  keep-md: TRUE
-  code-fold: true
+keep-md: TRUE
+prefer-html: TRUE
+code-fold: TRUE
 ---
 
 ```{r echo= FALSE}

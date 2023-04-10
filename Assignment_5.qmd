@@ -3,9 +3,9 @@ title: "Assignment 5"
 author: "Trevor Harrington"
 format: html
 editor: visual
-execute: 
-  keep-md: TRUE
-  code-fold: TRUE
+keep-md: TRUE
+prefer-html: TRUE
+code-fold: TRUE
 ---
 
 # Assignment 5: Applying t-test and ANOVA

@@ -177,6 +177,8 @@ div.csl-indent {
 <section id="i---calculating-biomass-carbon-co2-sequestration-for-each-plots" class="level3">
 <h3 class="anchored" data-anchor-id="i---calculating-biomass-carbon-co2-sequestration-for-each-plots">I - Calculating Biomass, Carbon &amp; CO2 Sequestration for Each Plots</h3>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate variables for each set of vectors</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dbh_near_water <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">48.2</span>, <span class="fl">32.3</span>, <span class="fl">40.6</span>, <span class="fl">21.0</span>, <span class="fl">44.7</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dbh_distant_from_water <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">54.5</span>, <span class="fl">70.2</span>, <span class="fl">29.0</span>, <span class="fl">26.2</span>, <span class="fl">46.7</span>)</span>
@@ -204,16 +206,20 @@ div.csl-indent {
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a column for CO2 (kg/tree)</span></span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="do">## CO2 is found by multiplying Carbon by the difference between the molar masses. This is done to determine the amount of potential atmospheric carbon that could be generated if the tree was used for combustion. </span></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>combined_df<span class="sc">$</span><span class="st">"CO2_per_tree (kg/tree)"</span> <span class="ot">&lt;-</span> (combined_df<span class="sc">$</span>Carbon <span class="sc">*</span> <span class="fl">3.66666666667</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="listing-results" class="level4">
 <h4 class="anchored" data-anchor-id="listing-results">Listing results</h4>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>combined_df <span class="sc">%&gt;%</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate_if</span>(is.numeric, comma) <span class="sc">%&gt;%</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
@@ -308,6 +314,8 @@ div.csl-indent {
 <section id="ii---calculating-averages-for-each-plot" class="level3">
 <h3 class="anchored" data-anchor-id="ii---calculating-averages-for-each-plot">II - Calculating Averages for Each Plot</h3>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>combined_df <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Location) <span class="sc">%&gt;%</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="st">"Average Biomass (kg/tree)"</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Biomass (kg/tree)</span><span class="st">`</span>),</span>
@@ -316,6 +324,7 @@ div.csl-indent {
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>           )<span class="sc">%&gt;%</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
@@ -348,6 +357,8 @@ div.csl-indent {
 <section id="graphing-results" class="level4">
 <h4 class="anchored" data-anchor-id="graphing-results">Graphing Results</h4>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_df) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(Location,DBH)) <span class="sc">+</span></span>
@@ -356,6 +367,7 @@ div.csl-indent {
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Location"</span>,</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Diameter at Breast Height (DBH, cm)"</span>) <span class="sc">+</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="Pollution_Project_Part_1_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -365,7 +377,10 @@ div.csl-indent {
 <section id="running-t-test-for-to-compare-dbh-between-the-plots" class="level3">
 <h3 class="anchored" data-anchor-id="running-t-test-for-to-compare-dbh-between-the-plots">Running t-test for to compare DBH between the plots</h3>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(dbh_distant_from_water,dbh_near_water)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -385,6 +400,8 @@ mean of x mean of y
 <section id="iii---extrapolating-the-results-for-the-arboretum" class="level3">
 <h3 class="anchored" data-anchor-id="iii---extrapolating-the-results-for-the-arboretum">III - Extrapolating the Results for the Arboretum</h3>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  combined_df <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
@@ -400,6 +417,7 @@ mean of x mean of y
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="st">"hover"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">

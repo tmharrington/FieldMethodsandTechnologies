@@ -3,9 +3,9 @@ title: "T-Test in RStudio"
 author: "Trevor Harrington"
 format: html
 editor: visual
-execute: 
-  keep-md: TRUE
-  code-fold: TRUE 
+keep-md: TRUE
+prefer-html: TRUE
+code-fold: TRUE
 ---
 
 # T-Tests in RStudio: Loblolly vs. Pine Trees
