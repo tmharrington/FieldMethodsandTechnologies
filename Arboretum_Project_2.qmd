@@ -40,15 +40,17 @@ Subsequently, the B horizon is characterized by the accumulation of finer partic
 
 Finally, the C horizon, or soil base, represents the last layer before bedrock and is the least weathered. However, it determines many of the chemical and physical properties of the overlying soil layers.
 
-### Soil carbon stock
+### Soil Organic Cabon
 
-Soil carbon stock is a valuable measurement
+Soil carbon stock is a important derived variable for understanding the effective capacity for growth that the soil can support. Soil potentially serves as a considerable sink for carbon, with potentially as much as 2/3 of a forests carbon being stored in the soil organic matter (SOM) @mondragón2022 . Several factors, physical, chemical and biological, play a role in the concentration of carbon present in soil; porosity, water holding capacity, toxins, microorganism activity, root permeation are directly impacted by variation in soil organic carbon.
+
+Some of the factors that are responsible for variation in soil organic carbon include vegetation, land use, topography, elevation, and climate.
 
 ------------------------------------------------------------------------
 
 ## Materials and Methods
 
-For the field study portion of this report, the SNHU arboretum was utilized to observe a soil profile in person. A soil profile sampler was used to sample two plots selected on parameters such as distance from a water source, elevation, and proximity to a previously measured tree stand. The area of the Arboretum used for this field study was
+For the field study portion of this report, the SNHU arboretum was utilized to observe a soil profile in person. A soil profile sampler was used to sample two plots selected on parameters such as distance from a water source, elevation, and proximity to a previously measured tree stand. The area of the Arboretum used for this field study is located approximately 100 feet from the parking lot, nearby to a significant amount of foot traffic. The depth of the O Horizon for the first plot taken within 10 feet from the walking path was measured to be 3 inches. The second plot measured was situated roughly 75 feet from the initial point, further from pedestrian areas but within 25 feet of a research monitoring station, which suggests come additional foot traffic. The depth of the O horizon measured at this location with the soil profile sampler with found to be 2.5 inches.
 
 ------------------------------------------------------------------------
 
@@ -154,3 +156,9 @@ soc_df %>%
 ```
 
 ### Summary
+
+This report presents the results of an investigation comparing soil carbon content in three different locations. Carbon concentration and dry soil mass were measured at each location to determine the bulk density and soil carbon content (tC/h). For Location 1, the carbon concentration was 5.4%, and the dry soil mass was 310.0 g. The sample depth and radius were consistent across all locations, with a depth of 20.0 cm and a radius of 2.5 cm. The calculated bulk density for Location 1 was 0.79 g/cm³, and carbon content was 85.3 tC/h.
+
+Location 2 exhibited a slightly higher carbon concentration of 6.1%, but a lower soil dry mass of 250.0 g. The bulk density at this location two was 0.64 g/cm³, and soil carbon content was 77.7 tC/h. Finally, at Location 3, the carbon concentration was 4.9%, and the dry soil mass was 290.0 g. The bulk density was 0.74 g/cm³, and the soil carbon content was found to be 72.4 tC/h.
+
+In summary, the results indicate that Location 1 had the highest soil carbon content (85.3 tC/h), followed by Location 2 (77.7 tC/h) and Location 3 (72.4 tC/h). Location 2 had the highest carbon concentration (6.1%), but its lower soil dry mass and bulk density contributed to a lower overall soil carbon content than Location 1.
